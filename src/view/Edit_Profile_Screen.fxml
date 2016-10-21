@@ -9,44 +9,44 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Edit_Profile_Controller">
-   <children>
-      <GridPane layoutX="10.0" layoutY="10.0" prefHeight="300.0" prefWidth="500.0" vgap="5.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0"
+            prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.Edit_Profile_Controller">
+    <GridPane layoutX="10.0" layoutY="10.0" prefHeight="300.0" prefWidth="500.0" vgap="5.0"
+              AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+              AnchorPane.topAnchor="10.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.0" minWidth="10.0" prefWidth="208.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="10.0" prefWidth="272.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.0" minWidth="10.0" prefWidth="208.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="10.0" prefWidth="272.0"/>
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
         </rowConstraints>
-         <children>
-            <Label text="First Name" />
-            <Label text="Last Name" GridPane.rowIndex="1" />
-            <Label text="Street" GridPane.rowIndex="3" />
-            <Label text="City" GridPane.rowIndex="4" />
-            <Label text="Postal Code" GridPane.rowIndex="5" />
-            <Label text="Account Type" GridPane.rowIndex="6" />
-            <TextField fx:id="firstNameField" GridPane.columnIndex="1" />
-            <TextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="streetField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="cityField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="postalCodeField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="accountTypeField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Label text="Password" GridPane.rowIndex="2" />
-            <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         </children>
-      </GridPane>
-      <ButtonBar layoutX="10.0" layoutY="263.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
-         <buttons>
-            <Button mnemonicParsing="false" onAction="#handleOkPressed" text="Okay" />
-          <Button mnemonicParsing="false" onAction="#handleCancelPressed" text="Cancel" />
-         </buttons>
-      </ButtonBar>
-   </children>
+        <Label text="First Name"/>
+        <Label text="Last Name" GridPane.rowIndex="1"/>
+        <Label text="Street" GridPane.rowIndex="3"/>
+        <Label text="City" GridPane.rowIndex="4"/>
+        <Label text="Postal Code" GridPane.rowIndex="5"/>
+        <Label text="Account Type" GridPane.rowIndex="6"/>
+        <TextField fx:id="firstNameField" GridPane.columnIndex="1"/>
+        <TextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <TextField fx:id="streetField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        <TextField fx:id="cityField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+        <TextField fx:id="postalCodeField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+        <TextField fx:id="accountTypeField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+        <Label text="Password" GridPane.rowIndex="2"/>
+        <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    </GridPane>
+    <ButtonBar layoutX="10.0" layoutY="263.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#handleOkPressed" text="Okay"/>
+            <Button mnemonicParsing="false" onAction="#handleCancelPressed" text="Cancel"/>
+        </buttons>
+    </ButtonBar>
 </AnchorPane>

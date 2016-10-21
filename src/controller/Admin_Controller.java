@@ -46,11 +46,11 @@ public class Admin_Controller {
      */
     @FXML
     private void initialize() {
-        // Initialize the source table with the one column
+        // Initialize the profile table with the one column
         accountNumberColumn.setCellValueFactory(
                 cellData -> cellData.getValue().thisInstanceAccountNumberProperty().asObject());
 
-        // Clear water source details.
+        // Clear profile details.
         showProfileDetails(null);
 
         // Listen for selection changes and show the profile details when changed.

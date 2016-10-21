@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import model.AccountType;
+import model.Model;
 import model.Profile;
 
 /**
@@ -69,6 +70,7 @@ public class Main_InApplication_Controller {
      */
     @FXML
     private void handleViewWaterAvailabilityPressed() {
+        Model.getInstance().loadWaterSourceReports();
         mainApplication.getWaterAvailabilityController().setProfile(profile);
         mainApplication.displayWaterAvailabilityScene();
     }
@@ -78,6 +80,7 @@ public class Main_InApplication_Controller {
      */
     @FXML
     private void handleViewWaterSourceReportsPressed(){
+        Model.getInstance().loadWaterSourceReports();
         mainApplication.displayWaterSourceReportOverviewScene();
     }
 
@@ -86,6 +89,7 @@ public class Main_InApplication_Controller {
      */
     @FXML
     private void handleViewWaterPurityReportsPressed() {
+        Model.getInstance().loadWaterPurityReports();
         mainApplication.displayWaterPurityReportOverviewScene();
     }
 

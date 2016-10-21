@@ -11,6 +11,10 @@ public enum OverallCondition {
         type = s;
     }
 
+    /**
+     * returns string representation of OverallCondition
+     * @return string representation of OverallCondition
+     */
     public String toString() {
         return type;
     }

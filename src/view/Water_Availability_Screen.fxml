@@ -21,47 +21,41 @@
    <left>
       <Accordion prefHeight="373.0" prefWidth="114.0" BorderPane.alignment="CENTER">
         <panes>
-          <TitledPane fx:id="submitWaterReportPane" animated="false" onMouseClicked="#handleWaterReportTabPressed" text="Submit Water Report">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <VBox prefHeight="345.0" prefWidth="164.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Label text="Location of Water" />
-                              <TextField fx:id="latitudeField" alignment="TOP_LEFT" promptText="Latitude" />
-                              <TextField fx:id="longitudeField" promptText="Longitude" />
-                              <Label text="Type of Water" />
-                              <ComboBox fx:id="typeOfWaterComboBox" prefWidth="150.0" />
-                              <Label text="Condition of Water" />
-                              <ComboBox fx:id="conditionOfWaterComboBox" prefWidth="150.0" />
-                              <Button mnemonicParsing="false" onAction="#handleSubmitWaterReportButtonPressed" text="Submit" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </TitledPane>
-            <TitledPane fx:id="submitWaterPurityReportPane" animated="false" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleWaterPurityTabPressed" text="Submit Water Purity Report">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <VBox prefHeight="345.0" prefWidth="164.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Label text="Location of Water" />
-                              <TextField fx:id="latitudeField1" alignment="TOP_LEFT" promptText="Latitude" />
-                              <TextField fx:id="longitudeField1" promptText="Longitude" />
-                              <Label text="Overall Condition" />
-                              <ComboBox fx:id="overallConditionComboBox" prefWidth="150.0" />
-                              <Label text="Virus PPM" />
-                              <TextField fx:id="virusPPMField" layoutX="10.0" layoutY="64.0" />
-                              <Label layoutX="10.0" layoutY="150.0" text="Contaminant PPM" />
-                              <TextField fx:id="contaminantPPMField" layoutX="10.0" layoutY="172.0" />
-                              <Button mnemonicParsing="false" onAction="#handleSubmitWaterPurityButtonPressed" text="Submit" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-               </content>
+            <TitledPane fx:id="submitWaterReportPane" animated="false" onMouseClicked="#handleWaterReportTabPressed"
+                        text="Submit Water Report">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <VBox prefHeight="345.0" prefWidth="164.0" spacing="5.0" AnchorPane.bottomAnchor="0.0"
+                          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label text="Location of Water"/>
+                        <TextField fx:id="latitudeField" alignment="TOP_LEFT" promptText="Latitude"/>
+                        <TextField fx:id="longitudeField" promptText="Longitude"/>
+                        <Label text="Type of Water"/>
+                        <ComboBox fx:id="typeOfWaterComboBox" prefWidth="150.0"/>
+                        <Label text="Condition of Water"/>
+                        <ComboBox fx:id="conditionOfWaterComboBox" prefWidth="150.0"/>
+                        <Button mnemonicParsing="false" onAction="#handleSubmitWaterReportButtonPressed"
+                                text="Submit"/>
+                    </VBox>
+                </AnchorPane>
+            </TitledPane>
+            <TitledPane fx:id="submitWaterPurityReportPane" animated="false" layoutX="10.0" layoutY="10.0"
+                        onMouseClicked="#handleWaterPurityTabPressed" text="Submit Water Purity Report">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <VBox prefHeight="345.0" prefWidth="164.0" spacing="5.0" AnchorPane.bottomAnchor="0.0"
+                          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label text="Location of Water"/>
+                        <TextField fx:id="latitudeField1" alignment="TOP_LEFT" promptText="Latitude"/>
+                        <TextField fx:id="longitudeField1" promptText="Longitude"/>
+                        <Label text="Overall Condition"/>
+                        <ComboBox fx:id="overallConditionComboBox" prefWidth="150.0"/>
+                        <Label text="Virus PPM"/>
+                        <TextField fx:id="virusPPMField" layoutX="10.0" layoutY="64.0"/>
+                        <Label layoutX="10.0" layoutY="150.0" text="Contaminant PPM"/>
+                        <TextField fx:id="contaminantPPMField" layoutX="10.0" layoutY="172.0"/>
+                        <Button mnemonicParsing="false" onAction="#handleSubmitWaterPurityButtonPressed"
+                                text="Submit"/>
+                    </VBox>
+                </AnchorPane>
             </TitledPane>
         </panes>
       </Accordion>

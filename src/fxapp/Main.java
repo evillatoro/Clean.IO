@@ -44,6 +44,7 @@ public class Main extends Application {
 
     /**
      * window of application
+     *
      * @return main stage of application
      */
     public Stage getWindow() {

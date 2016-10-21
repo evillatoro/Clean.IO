@@ -14,7 +14,7 @@ public enum AccountType {
 
     /**
      * returns string representation of AccountType
-     * @return
+     * @return string representation of AccountType
      */
     public String toString() {
         return type;

@@ -58,18 +58,29 @@ public class Model {
         return database != null && database.addWaterPurityReport(waterPurityReport);
     }
 
+    /**
+     * database of the application
+     *
+     * @return the database of the application
+     */
     public Database getDatabase() {
         return database;
     }
 
     /**
      * sets the profile that is logged in
+     *
      * @param profile profile that is logged in
      */
     public void setLoggedInProfile(Profile profile) {
         loggedInProfile = profile;
     }
 
+    /**
+     * gets the profile that is logged in
+     *
+     * @return the profile that is logged in
+     */
     public Profile getLoggedInProfile() {
         return loggedInProfile;
     }

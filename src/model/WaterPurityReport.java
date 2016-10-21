@@ -21,7 +21,6 @@ public class WaterPurityReport {
         this.contaminantPPM = contaminantPPM;
         this.thisInstanceReportNumber.setValue(reportNumber);
 
-        reportNumber++;
     }
 
     public Double getVirusPPM() {

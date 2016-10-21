@@ -12,6 +12,10 @@ public enum ConditionOfWater {
         type = s;
     }
 
+    /**
+     * returns string representation of ConditionOfWater
+     * @return string representation of ConditionOfWater
+     */
     public String toString() {
         return type;
     }

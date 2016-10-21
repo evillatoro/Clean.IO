@@ -207,7 +207,7 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             SimpleDateFormat timeFormatter = new SimpleDateFormat("h:mm a");
             String date = dateFormatter.format(yeah);
             String time = timeFormatter.format(yeah);
-            String nameOfReporter = Model.getInstance().getLoggedInProfile().getUsername();
+            String nameOfReporter = profile.getUsername();
             Double latitude = Double.parseDouble(latitudeField.getText());
             Double longitude = Double.parseDouble(longitudeField.getText());
             TypeOfWater typeOfWater = typeOfWaterComboBox.getSelectionModel().getSelectedItem();
@@ -234,7 +234,7 @@ public class Water_Availability_Controller implements Initializable, MapComponen
     }
 
     /**
-     * called when the user clicks submit in the sibmit water purity pane
+     * called when the user clicks submit in the submit water purity pane
      */
     @FXML
     private void handleSubmitWaterPurityButtonPressed() {
@@ -244,7 +244,7 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             SimpleDateFormat timeFormatter = new SimpleDateFormat("h:mm a");
             String date = dateFormatter.format(yeah);
             String time = timeFormatter.format(yeah);
-            String nameOfReporter = Model.getInstance().getLoggedInProfile().getUsername();
+            String nameOfReporter = profile.getUsername();
             Double latitude = Double.parseDouble(latitudeField1.getText());
             Double longitude = Double.parseDouble(longitudeField1.getText());
             OverallCondition overallCondition = overallConditionComboBox.getSelectionModel().getSelectedItem();

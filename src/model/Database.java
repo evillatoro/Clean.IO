@@ -57,18 +57,6 @@ public class Database {
         }
 
         return false;
-
-
-//        for (Profile p : profiles) {
-//            if (p.getUsername().equals(profile.getUsername())) {
-//                // found duplicate username
-//                return false;
-//            }
-//        }
-//        //never found the profile so safe to add it
-//        profiles.add(profile);
-//        //return the success signal
-//        return true;
     }
 
     private void addProfileToDatabase(Profile profile) {
@@ -79,7 +67,6 @@ public class Database {
             st.setString(2, profile.getPassword());
             st.setString(3, profile.getAccountType().toString());
             st.execute();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -133,7 +120,6 @@ public class Database {
             st.setDouble(5, waterSourceReport.getLongitude());
             st.setString(6, waterSourceReport.getTypeOfWater().toString());
             st.setString(7, waterSourceReport.getConditionOfWater().toString());
-            //st.setDouble(2, waterSourceReport.getLatitude());
             st.execute();
 
         } catch (SQLException e) {
@@ -267,6 +253,7 @@ public class Database {
     }
 
     public void loadWaterSourceReports() {
+        waterSourceReports.clear();
         String query = "SELECT * FROM watersourcereports";
 
         try {
@@ -279,9 +266,18 @@ public class Database {
                 Double latitude = rs.getDouble("latitude");
                 Double longitude = rs.getDouble("longitude");
                 TypeOfWater typeOfWater = TypeOfWater.valueOf(rs.getString("typeOfWater"));
-                ConditionOfWater conditionOfWater = ConditionOfWater.Potable;
+                ConditionOfWater conditionOfWater;
+                if (rs.getString("conditionOfWater").equals("Treatable-Clear")) {
+                    conditionOfWater = ConditionOfWater.Treatable_Clear;
+                } else if (rs.getString("conditionOfWater").equals("Treatable-Muddy")) {
+                    conditionOfWater = ConditionOfWater.Treatable_Muddy;
+                } else {
+                    conditionOfWater = ConditionOfWater.valueOf(rs.getString("conditionOfWater"));
+                }
                 WaterSourceReport waterSourceReport
                         = new WaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater,conditionOfWater);
+                int id = rs.getInt("id");
+                waterSourceReport.setThisInstanceReportNumber(id);
                 waterSourceReports.add(waterSourceReport);
             }
         } catch (SQLException e) {
@@ -290,6 +286,7 @@ public class Database {
     }
 
     public void loadWaterPurityReports() {
+        waterPurityReports.clear();
         String query = "SELECT * FROM waterpurityreports";
 
         try {
@@ -306,6 +303,8 @@ public class Database {
                 Double contaminantPPM = rs.getDouble("contaminantPPM");
                 WaterPurityReport waterPurityReport
                         = new WaterPurityReport(date, time, nameOfReporter, latitude, longitude, overallCondition, virusPPM, contaminantPPM);
+                int id = rs.getInt("id");
+                waterPurityReport.setThisInstanceReportNumber(id);
                 waterPurityReports.add(waterPurityReport);
             }
         } catch (SQLException e) {

@@ -83,6 +83,7 @@ public class Login_Controller {
 
     /**
      * validates the user input in the text fields.
+     *
      * @return true if the input is valid
      */
     private boolean isInputValid() {
