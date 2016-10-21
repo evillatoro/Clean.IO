@@ -70,7 +70,8 @@ public class Main_InApplication_Controller {
      */
     @FXML
     private void handleViewWaterAvailabilityPressed() {
-        Model.getInstance().loadWaterSourceReports();
+        // used to refresh
+        //Model.getInstance().loadWaterSourceReports();
         mainApplication.getWaterAvailabilityController().setProfile(profile);
         mainApplication.displayWaterAvailabilityScene();
     }
@@ -80,7 +81,8 @@ public class Main_InApplication_Controller {
      */
     @FXML
     private void handleViewWaterSourceReportsPressed(){
-        Model.getInstance().loadWaterSourceReports();
+        // used to refresh
+        //Model.getInstance().loadWaterSourceReports();
         mainApplication.displayWaterSourceReportOverviewScene();
     }
 
@@ -89,7 +91,8 @@ public class Main_InApplication_Controller {
      */
     @FXML
     private void handleViewWaterPurityReportsPressed() {
-        Model.getInstance().loadWaterPurityReports();
+        // used to refresh
+        //Model.getInstance().loadWaterPurityReports();
         mainApplication.displayWaterPurityReportOverviewScene();
     }
 

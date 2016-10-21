@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
+import javafx.stage.Stage;
 import model.*;
 import netscape.javascript.JSObject;
 
@@ -214,22 +215,32 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             ConditionOfWater conditionOfWater = conditionOfWaterComboBox.getSelectionModel().getSelectedItem();
             WaterSourceReport waterSourceReport
                     = new WaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater);
-            Model.getInstance().addWaterSourceReport(waterSourceReport);
 
-            Marker marker = new Marker(new MarkerOptions());
-            marker.setPosition(new LatLong(latitude, longitude));
-            map.addUIEventHandler(marker,
-                    UIEventType.click,
-                    (JSObject obj) -> {
-                        InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
-                        infoWindowOptions.content(waterSourceReport.getTypeOfWater().toString() + "<br>" +
-                                waterSourceReport.getConditionOfWater().toString());
+            if (Model.getInstance().addWaterSourceReport(waterSourceReport)) {
+                Marker marker = new Marker(new MarkerOptions());
+                marker.setPosition(new LatLong(latitude, longitude));
+                map.addUIEventHandler(marker,
+                        UIEventType.click,
+                        (JSObject obj) -> {
+                            InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
+                            infoWindowOptions.content(waterSourceReport.getTypeOfWater().toString() + "<br>" +
+                                    waterSourceReport.getConditionOfWater().toString());
 
-                        InfoWindow window = new InfoWindow(infoWindowOptions);
-                        window.open(map, marker);
-                    });
+                            InfoWindow window = new InfoWindow(infoWindowOptions);
+                            window.open(map, marker);
+                        });
 
-            map.addMarker(marker);
+                map.addMarker(marker);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                Stage stage = mainApplication.getWindow();
+                alert.initOwner(stage);
+                alert.setTitle("Error");
+                alert.setHeaderText("Someone has already submitted a report for this location.");
+                //alert.setContentText("wrong username or password");
+
+                alert.showAndWait();
+            }
         }
     }
 
@@ -252,7 +263,17 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             Double contaminantPPM = Double.parseDouble(contaminantPPMField.getText());
             WaterPurityReport waterPurityReport
                     = new WaterPurityReport(date, time, nameOfReporter, latitude, longitude, overallCondition, virusPPM, contaminantPPM);
-            Model.getInstance().addWaterPurityReport(waterPurityReport);
+
+            if (!Model.getInstance().addWaterPurityReport(waterPurityReport)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                Stage stage = mainApplication.getWindow();
+                alert.initOwner(stage);
+                alert.setTitle("Error");
+                alert.setHeaderText("Someone has already submitted a report for this location.");
+                //alert.setContentText("wrong username or password");
+
+                alert.showAndWait();
+            }
 
             map.removeMarker(lol);
             int currentZoom = map.getZoom();

@@ -24,15 +24,15 @@ public class Database {
      * * connects to a database
      */
     public Database() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost/test?autoReconnect=true&useSSL=false";
-            Class.forName ("com.mysql.jdbc.Driver").newInstance ();
-            con = DriverManager.getConnection (url, "root", "edwin10285");
-            System.out.println("connection set");
-        } catch(Exception e) {
-            System.out.println("Error " + e);
-        }
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//            String url = "jdbc:mysql://localhost/test?autoReconnect=true&useSSL=false";
+//            Class.forName ("com.mysql.jdbc.Driver").newInstance ();
+//            con = DriverManager.getConnection (url, "root", "edwin10285");
+//            System.out.println("connection set");
+//        } catch(Exception e) {
+//            System.out.println("Error " + e);
+//        }
     }
 
     /**
@@ -41,22 +41,35 @@ public class Database {
      * @return true if success, false if profile already in the database
      */
     public boolean addProfile(Profile profile) {
-        try {
-            String query = "SELECT 'username' FROM profiles WHERE username = ?";
-            st = con.prepareStatement(query);
-            st.setString(1, profile.getUsername());
-            rs = st.executeQuery();
-            if(!(rs.next())) {
-                addProfileToDatabase(profile);
-                profiles.add(profile);
-                return true;
+        for (Profile p : profiles) {
+            if (p.getUsername().equals(profile.getUsername())) {
+                // found duplicate username
+                return false;
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
+        //never found the profile so safe to add it
+        profiles.add(profile);
+        //return the success signal
+        return true;
 
-        return false;
+        // database way to do it
+//        try {
+//            String query = "SELECT 'username' FROM profiles WHERE username = ?";
+//            st = con.prepareStatement(query);
+//            st.setString(1, profile.getUsername());
+//            rs = st.executeQuery();
+//            if(!(rs.next())) {
+//                addProfileToDatabase(profile);
+//                profiles.add(profile);
+//                return true;
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return false;
+
     }
 
     private void addProfileToDatabase(Profile profile) {
@@ -78,34 +91,36 @@ public class Database {
      * @return true if success, false if water source report already in the database
      */
     public boolean addWaterSourceReport(WaterSourceReport waterSourceReport) {
-        try {
-            String query = "SELECT 'latitude', 'longitude' FROM watersourcereports WHERE latitude = ? AND longitude = ?";
-            st = con.prepareStatement(query);
-            st.setDouble(1, waterSourceReport.getLatitude());
-            st.setDouble(2, waterSourceReport.getLongitude());
-            rs = st.executeQuery();
-            if(!(rs.next())) {
-                addWaterSourceReportToDatabase(waterSourceReport);
-                waterSourceReports.add(waterSourceReport);
-                return true;
+        for (WaterSourceReport p : waterSourceReports) {
+            if (p.getLatitude().equals(waterSourceReport.getLatitude())
+                    && p.getLongitude().equals(waterSourceReport.getLongitude())) {
+                // found duplicate water source report
+                return false;
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
+        //never found a duplicate water source report so safe to add it
+        waterSourceReports.add(waterSourceReport);
+        //return the success signal
+        return true;
 
-        return false;
-
-//        for (WaterSourceReport p : waterSourceReports) {
-//            if (p.getLatitude().equals(waterSourceReport.getLatitude()) && p.getLongitude().equals(waterSourceReport.getLongitude())) {
-//                // found duplicate username
-//                return false;
+        // database way to do it
+//        try {
+//            String query = "SELECT 'latitude', 'longitude' FROM watersourcereports WHERE latitude = ? AND longitude = ?";
+//            st = con.prepareStatement(query);
+//            st.setDouble(1, waterSourceReport.getLatitude());
+//            st.setDouble(2, waterSourceReport.getLongitude());
+//            rs = st.executeQuery();
+//            if(!(rs.next())) {
+//                addWaterSourceReportToDatabase(waterSourceReport);
+//                waterSourceReports.add(waterSourceReport);
+//                return true;
 //            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
 //        }
-//        //never found the profile so safe to add it
-//        waterSourceReports.add(waterSourceReport);
-//        //return the success signal
-//        return true;
+//
+//        return false;
     }
 
     private void addWaterSourceReportToDatabase(WaterSourceReport waterSourceReport) {
@@ -133,34 +148,35 @@ public class Database {
      * @return true if success, false if profile already in the database
      */
     public boolean addWaterPurityReport(WaterPurityReport waterPurityReport) {
-        try {
-            String query = "SELECT 'latitude', 'longitude' FROM waterpurityreports WHERE latitude = ? AND longitude = ?";
-            st = con.prepareStatement(query);
-            st.setDouble(1, waterPurityReport.getLatitude());
-            st.setDouble(2, waterPurityReport.getLongitude());
-            rs = st.executeQuery();
-            if(!(rs.next())) {
-                addWaterPurityReportToDatabase(waterPurityReport);
-                waterPurityReports.add(waterPurityReport);
-                return true;
+        for (WaterPurityReport p : waterPurityReports) {
+            if (p.getLatitude().equals(waterPurityReport.getLatitude()) && p.getLongitude().equals(waterPurityReport.getLongitude())) {
+                // found duplicate water purity report
+                return false;
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
+        //never found duplicate water purity report so safe to add it
+        waterPurityReports.add(waterPurityReport);
+        //return the success signal
+        return true;
 
-        return false;
-
-//        for (WaterPurityReport p : waterPurityReports) {
-//            if (p.getLatitude().equals(waterPurityReport.getLatitude()) && p.getLongitude().equals(waterPurityReport.getLongitude())) {
-//                // found duplicate username
-//                return false;
+        // database way to do it
+//        try {
+//            String query = "SELECT 'latitude', 'longitude' FROM waterpurityreports WHERE latitude = ? AND longitude = ?";
+//            st = con.prepareStatement(query);
+//            st.setDouble(1, waterPurityReport.getLatitude());
+//            st.setDouble(2, waterPurityReport.getLongitude());
+//            rs = st.executeQuery();
+//            if(!(rs.next())) {
+//                addWaterPurityReportToDatabase(waterPurityReport);
+//                waterPurityReports.add(waterPurityReport);
+//                return true;
 //            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
 //        }
-//        //never found the profile so safe to add it
-//        waterPurityReports.add(waterPurityReport);
-//        //return the success signal
-//        return true;
+//
+//        return false;
     }
 
     private void addWaterPurityReportToDatabase(WaterPurityReport waterPurityReport) {
