@@ -3,7 +3,10 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Database {
 
@@ -206,27 +209,26 @@ public class Database {
      * @param password password of profile
      * @return true if profile is in server, false otherwise
      */
-    public boolean searchProfile(String username, String password) {
+    public Profile searchForProfile(String username, String password) {
         for (Profile p : profiles) {
             if (p.getUsername().equals(username) && p.getPassword().equals(password)) {
                 // found duplicate name
-                return true;
+                return p;
             }
         }
         //never found the profile in the server
-        return false;
+        return null;
     }
 
     /**
      * looks for the requested profile with the matching username and password
      * used for login
      * @param username username of profile
-     * @param password password of profile
      * @return true if profile is in server, false otherwise
      */
-    public boolean removeProfile(String username, String password) {
+    public boolean removeProfile(String username) {
         for (Profile p : profiles) {
-            if (p.getUsername().equals(username) && p.getPassword().equals(password)) {
+            if (p.getUsername().equals(username)) {
                 // found duplicate name
                 profiles.remove(p);
                 return true;
@@ -234,22 +236,6 @@ public class Database {
         }
         //never found the profile in the server
         return false;
-    }
-
-    /**
-     * returns the profile with the same username and password
-     * @param username username of profile
-     * @param password password of profile
-     * @return returns the profile if there is a matching username and password, false otherwise
-     */
-    public Profile getProfile(String username, String password) {
-        for (Profile p : profiles) {
-            if (p.getUsername().equals(username) && p.getPassword().equals(password)) {
-                // found duplicate username
-                return p;
-            }
-        }
-        return null;
     }
 
     /**

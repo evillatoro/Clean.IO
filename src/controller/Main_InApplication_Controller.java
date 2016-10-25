@@ -1,11 +1,10 @@
 package controller;
 
-import fxapp.Main;
+import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import model.AccountType;
-import model.Model;
 import model.Profile;
 
 /**
@@ -14,7 +13,7 @@ import model.Profile;
 public class Main_InApplication_Controller {
 
     /** a link back to the main application class */
-    private Main mainApplication;
+    private MainFXApplication mainApplication;
 
     /** the profile who is logged in*/
     private Profile profile;
@@ -30,7 +29,7 @@ public class Main_InApplication_Controller {
      *
      * @param mainFXApplication  a reference (link) to our main class
      */
-    public void setMainApp(Main mainFXApplication) {
+    public void setMainApp(MainFXApplication mainFXApplication) {
         mainApplication = mainFXApplication;
     }
 
@@ -53,7 +52,6 @@ public class Main_InApplication_Controller {
      */
     @FXML
     private void handleEditProfilePressed() {
-        mainApplication.getEditProfileController().setProfile(profile);
         mainApplication.displayEditProfileScene();
     }
 
@@ -72,7 +70,6 @@ public class Main_InApplication_Controller {
     private void handleViewWaterAvailabilityPressed() {
         // used to refresh
         //Model.getInstance().loadWaterSourceReports();
-        mainApplication.getWaterAvailabilityController().setProfile(profile);
         mainApplication.displayWaterAvailabilityScene();
     }
 

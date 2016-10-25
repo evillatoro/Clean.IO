@@ -1,6 +1,6 @@
 package controller;
 
-import fxapp.Main;
+import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import model.Profile;
@@ -11,7 +11,7 @@ import model.Profile;
 public class Edit_Profile_Controller {
 
     /** a link back to the main application class */
-    private Main mainApplication;
+    private MainFXApplication mainFXApplicationApplication;
 
     /** the profile whose data is being manipulated*/
     private Profile profile;
@@ -40,10 +40,10 @@ public class Edit_Profile_Controller {
     /**
      * setup the main application link so we can call methods there
      *
-     * @param mainFXApplication  a reference (link) to our main class
+     * @param mainFXApplicationFXApplication  a reference (link) to our main class
      */
-    public void setMainApp(Main mainFXApplication) {
-        mainApplication = mainFXApplication;
+    public void setMainApp(MainFXApplication mainFXApplicationFXApplication) {
+        mainFXApplicationApplication = mainFXApplicationFXApplication;
     }
 
     /**
@@ -67,7 +67,7 @@ public class Edit_Profile_Controller {
             profile.setFirstName(firstNameField.getText());
             profile.setLastName(lastNameField.getText());
             profile.setPassword(passwordField.getText());
-            mainApplication.displayMainInApplicationScene();
+            mainFXApplicationApplication.displayMainInApplicationScene();
     }
 
     /**
@@ -75,7 +75,7 @@ public class Edit_Profile_Controller {
      */
     @FXML
     private void handleCancelPressed() {
-        mainApplication.displayMainInApplicationScene();
+        mainFXApplicationApplication.displayMainInApplicationScene();
     }
 
 }

@@ -1,6 +1,6 @@
 package controller;
 
-import fxapp.Main;
+import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -15,7 +15,7 @@ import model.Profile;
 public class Register_Controller {
 
     /** a link back to the main application class */
-    private Main mainApplication;
+    private MainFXApplication mainApplication;
 
     @FXML
     private TextField usernameField;
@@ -31,7 +31,7 @@ public class Register_Controller {
      *
      * @param mainFXApplication  a reference (link) to our main class
      */
-    public void setMainApp(Main mainFXApplication) {
+    public void setMainApp(MainFXApplication mainFXApplication) {
         mainApplication = mainFXApplication;
     }
 
@@ -65,7 +65,7 @@ public class Register_Controller {
      */
     @FXML
     public void handleSubmitPressed() {
-        if(isInputValid()) {
+        if (isInputValid()) {
             Profile profile = new Profile(usernameField.getText(), passwordField.getText(), accountTypeComboBox.getSelectionModel().getSelectedItem());
             if (!Model.getInstance().addProfile(profile)) {
                 //if the add fails, notify the user
@@ -81,7 +81,6 @@ public class Register_Controller {
                 if (profile.getAccountType().equals(AccountType.ADMIN)) {
                     mainApplication.displayAdminScene();
                 } else {
-                    mainApplication.getMainInApplicationController().setProfile(profile);
                     mainApplication.displayMainInApplicationScene();
                 }
             }

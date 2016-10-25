@@ -1,6 +1,6 @@
 package controller;
 
-import fxapp.Main;
+import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -16,7 +16,7 @@ import model.Profile;
 public class Login_Controller {
 
     /** a link back to the main application class */
-    private Main mainApplication;
+    private MainFXApplication mainApplication;
 
     @FXML
     private TextField usernameField;
@@ -29,35 +29,25 @@ public class Login_Controller {
      *
      * @param mainFXApplication  a reference (link) to our main class
      */
-    public void setMainApp(Main mainFXApplication) {
+    public void setMainApp(MainFXApplication mainFXApplication) {
         mainApplication = mainFXApplication;
-    }
-
-    /**
-     * called when the user clicks cancel
-     */
-    @FXML
-    public void handleCancelPressed() {
-        mainApplication.displayWelcomeScene();
     }
 
     /**
      * called when the user clicks login
      */
     @FXML
-    public void handleLoginCleanIOPressed() {
+    private void handleLoginCleanIOPressed() {
         if (isInputValid()) {
             String username = usernameField.getText();
             String password = passwordField.getText();
-            if (Model.getInstance().getDatabase().searchProfile(username, password)) {
-                Profile profile = Model.getInstance().getDatabase().getProfile(username, password);
+            Profile profileToLogin = Model.getInstance().searchForProfile(username, password);
+            if (profileToLogin != null) {
                 usernameField.clear();
                 passwordField.clear();
-                if (profile.getAccountType().equals(AccountType.ADMIN)) {
+                if (profileToLogin.getAccountType().equals(AccountType.ADMIN)) {
                     mainApplication.displayAdminScene();
                 } else {
-                    mainApplication.getMainInApplicationController().setProfile(profile);
-                    Model.getInstance().setLoggedInProfile(profile);
                     mainApplication.displayMainInApplicationScene();
                 }
             } else {
@@ -79,6 +69,14 @@ public class Login_Controller {
     @FXML
     private void handleRegisterPressed() {
         mainApplication.displayRegisterScene();
+    }
+
+    /**
+     * called when the user clicks cancel
+     */
+    @FXML
+    private void handleCancelPressed() {
+        mainApplication.displayWelcomeScene();
     }
 
     /**

@@ -1,6 +1,6 @@
 package controller;
 
-import fxapp.Main;
+import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
 
 /**
@@ -9,15 +9,15 @@ import javafx.fxml.FXML;
 public class Welcome_Controller {
 
     /** a link back to the main application class */
-    private Main mainApplication;
+    private MainFXApplication mainFXApplicationApplication;
 
     /**
      * setup the main application link so we can call methods there
      *
-     * @param mainFXApplication  a reference (link) to our main class
+     * @param mainFXApplicationFXApplication  a reference (link) to our main class
      */
-    public void setMainApp(Main mainFXApplication) {
-        mainApplication = mainFXApplication;
+    public void setMainApp(MainFXApplication mainFXApplicationFXApplication) {
+        mainFXApplicationApplication = mainFXApplicationFXApplication;
     }
 
     /**
@@ -25,7 +25,7 @@ public class Welcome_Controller {
      */
     @FXML
     private void handleLoginPressed() {
-        mainApplication.displayLoginScene();
+        mainFXApplicationApplication.displayLoginScene();
     }
 
     /**
@@ -33,7 +33,7 @@ public class Welcome_Controller {
      */
     @FXML
     private void handleRegisterPressed() {
-        mainApplication.displayRegisterScene();
+        mainFXApplicationApplication.displayRegisterScene();
     }
 
 }

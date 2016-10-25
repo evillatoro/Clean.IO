@@ -1,6 +1,6 @@
 package controller;
 
-import fxapp.Main;
+import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -14,7 +14,7 @@ import model.WaterPurityReport;
 public class Water_Purity_Report_Overview_Controller {
 
     /** a link back to the main application class */
-    private Main mainApplication;
+    private MainFXApplication mainFXApplicationApplication;
 
     @FXML
     private TableView<WaterPurityReport> waterPurityTable;
@@ -42,12 +42,12 @@ public class Water_Purity_Report_Overview_Controller {
     /**
      * setup the main application link so we can call methods there
      *
-     * @param mainFXApplication  a reference (link) to our main class
+     * @param mainFXApplicationFXApplication  a reference (link) to our main class
      */
-    public void setMainApp(Main mainFXApplication) {
-        mainApplication = mainFXApplication;
+    public void setMainApp(MainFXApplication mainFXApplicationFXApplication) {
+        mainFXApplicationApplication = mainFXApplicationFXApplication;
 
-        waterPurityTable.setItems(Model.getInstance().getDatabase().getWaterPurityReports());
+        waterPurityTable.setItems(Model.getInstance().getWaterPurityReports());
     }
 
     /**
@@ -104,7 +104,7 @@ public class Water_Purity_Report_Overview_Controller {
      */
     @FXML
     private void handleBackToMainMenuPressed() {
-        mainApplication.displayMainInApplicationScene();
+        mainFXApplicationApplication.displayMainInApplicationScene();
     }
 
 }

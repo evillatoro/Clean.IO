@@ -1,6 +1,6 @@
 package controller;
 
-import fxapp.Main;
+import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -15,7 +15,7 @@ import model.Profile;
 public class Admin_Controller {
 
     /** a link back to the main application class */
-    private Main mainApplication;
+    private MainFXApplication mainApplication;
 
     @FXML
     private TableView<Profile> profileTable;
@@ -34,10 +34,10 @@ public class Admin_Controller {
      *
      * @param mainFXApplication  a reference (link) to our main class
      */
-    public void setMainApp(Main mainFXApplication) {
+    public void setMainApp(MainFXApplication mainFXApplication) {
         mainApplication = mainFXApplication;
 
-        profileTable.setItems(Model.getInstance().getDatabase().getProfiles());
+        profileTable.setItems(Model.getInstance().getProfiles());
     }
 
     /**
@@ -84,8 +84,7 @@ public class Admin_Controller {
     private void handleDeletePressed() {
         int selectedIndex = profileTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            Model.getInstance().getDatabase().removeProfile(profileTable.getSelectionModel().getSelectedItem().getUsername(), profileTable.getSelectionModel().getSelectedItem().getPassword());
-            profileTable.getItems().remove(selectedIndex);
+            Model.getInstance().removeProfile(profileTable.getSelectionModel().getSelectedItem().getUsername());
         } else {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -105,5 +104,5 @@ public class Admin_Controller {
     private void handleLogoutPressed() {
         mainApplication.displayWelcomeScene();
     }
-    
+
 }

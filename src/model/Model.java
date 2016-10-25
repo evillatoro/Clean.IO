@@ -1,5 +1,7 @@
 package model;
 
+import javafx.collections.ObservableList;
+
 public class Model {
 
     private static final Model instance = new Model();
@@ -13,16 +15,32 @@ public class Model {
     /** remember the currently logged in profile*/
     private Profile loggedInProfile;
 
-    private Model () {
+    private Model() {
         database = new Database();
         // used to load all the reports when the the application starts
         //database.loadWaterPurityReports();
         //database.loadWaterSourceReports();
         // default profiles to use to test
-        database.getProfiles().add(new Profile("u", "p", AccountType.USER));
-        database.getProfiles().add(new Profile("w", "p", AccountType.WORKER));
-        database.getProfiles().add(new Profile("m", "p", AccountType.MANAGER));
-        database.getProfiles().add(new Profile("a", "p", AccountType.ADMIN));
+        addProfile(new Profile("u", "p", AccountType.USER));
+        addProfile(new Profile("w", "p", AccountType.WORKER));
+        addProfile(new Profile("m", "p", AccountType.MANAGER));
+        addProfile(new Profile("a", "p", AccountType.ADMIN));
+    }
+
+    /**
+     * list of profiles in the database
+     * @return list of profiles in the database
+     */
+    public ObservableList<Profile> getProfiles() {
+        return database.getProfiles();
+    }
+
+    public ObservableList<WaterSourceReport> getWaterSourceReports() {
+        return database.getWaterSourceReports();
+    }
+
+    public ObservableList<WaterPurityReport> getWaterPurityReports() {
+        return database.getWaterPurityReports();
     }
 
     /**
@@ -37,6 +55,21 @@ public class Model {
             return true;
         }
         return false;
+    }
+
+    public boolean removeProfile(String username) {
+        if (database != null && database.removeProfile(username)) {
+            return true;
+        }
+        return false;
+    }
+
+    public Profile searchForProfile(String username, String password) {
+        if (database != null) {
+            loggedInProfile = database.searchForProfile(username, password);
+            return loggedInProfile;
+        }
+        return null;
     }
 
     /**
@@ -57,15 +90,6 @@ public class Model {
      */
     public boolean addWaterPurityReport(WaterPurityReport waterPurityReport) {
         return database != null && database.addWaterPurityReport(waterPurityReport);
-    }
-
-    /**
-     * database of the application
-     *
-     * @return the database of the application
-     */
-    public Database getDatabase() {
-        return database;
     }
 
     /**

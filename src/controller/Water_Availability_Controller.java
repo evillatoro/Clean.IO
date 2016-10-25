@@ -4,7 +4,7 @@ import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
 import com.lynden.gmapsfx.javascript.event.UIEventType;
 import com.lynden.gmapsfx.javascript.object.*;
-import fxapp.Main;
+import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -58,17 +58,17 @@ public class Water_Availability_Controller implements Initializable, MapComponen
     private TextField contaminantPPMField;
 
     /** a link back to the main application class */
-    private Main mainApplication;
+    private MainFXApplication mainFXApplicationApplication;
 
     private Marker lol;
 
     /**
      * setup the main application link so we can call methods there
      *
-     * @param mainFXApplication  a reference (link) to our main class
+     * @param mainFXApplicationFXApplication  a reference (link) to our main class
      */
-    public void setMainApp(Main mainFXApplication) {
-        mainApplication = mainFXApplication;
+    public void setMainApp(MainFXApplication mainFXApplicationFXApplication) {
+        mainFXApplicationApplication = mainFXApplicationFXApplication;
     }
 
     /**
@@ -89,7 +89,7 @@ public class Water_Availability_Controller implements Initializable, MapComponen
         clearAll();
         submitWaterPurityReportPane.setExpanded(false);
         submitWaterReportPane.setExpanded(false);
-        mainApplication.displayMainInApplicationScene();
+        mainFXApplicationApplication.displayMainInApplicationScene();
     }
 
     @Override
@@ -134,8 +134,7 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             }
         });
 
-        Model facade = Model.getInstance();
-        List<WaterSourceReport> waterSourceReports = facade.getDatabase().getWaterSourceReports();
+        List<WaterSourceReport> waterSourceReports = Model.getInstance().getWaterSourceReports();
 
         for (WaterSourceReport waterSourceReport : waterSourceReports) {
             MarkerOptions markerOptions = new MarkerOptions();
@@ -233,7 +232,7 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                 map.addMarker(marker);
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                Stage stage = mainApplication.getWindow();
+                Stage stage = mainFXApplicationApplication.getWindow();
                 alert.initOwner(stage);
                 alert.setTitle("Error");
                 alert.setHeaderText("Someone has already submitted a report for this location.");
@@ -266,7 +265,7 @@ public class Water_Availability_Controller implements Initializable, MapComponen
 
             if (!Model.getInstance().addWaterPurityReport(waterPurityReport)) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                Stage stage = mainApplication.getWindow();
+                Stage stage = mainFXApplicationApplication.getWindow();
                 alert.initOwner(stage);
                 alert.setTitle("Error");
                 alert.setHeaderText("Someone has already submitted a report for this location.");
@@ -320,7 +319,7 @@ public class Water_Availability_Controller implements Initializable, MapComponen
         } else {
             // Show the error message if bad data
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(mainApplication.getWindow());
+            alert.initOwner(mainFXApplicationApplication.getWindow());
             alert.setTitle("Invalid Fields");
             alert.setHeaderText("Please correct invalid fields");
             alert.setContentText(errorMessage);
