@@ -11,6 +11,16 @@ public class WaterSourceReport {
     private ConditionOfWater conditionOfWater;
     private final IntegerProperty thisInstanceReportNumber = new SimpleIntegerProperty();
 
+    /**
+     * makes water source report
+     * @param date date
+     * @param time time
+     * @param nameOfReporter name of reporter
+     * @param latitude latitude
+     * @param longitude longitude
+     * @param typeOfWater type of water
+     * @param conditionOfWater condition of water
+     */
     public WaterSourceReport(String date, String time, String nameOfReporter, Double latitude, Double longitude, TypeOfWater typeOfWater, ConditionOfWater conditionOfWater) {
         this.date = date;
         this.time = time;

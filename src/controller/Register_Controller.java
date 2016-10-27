@@ -24,6 +24,12 @@ public class Register_Controller {
     private TextField passwordField;
 
     @FXML
+    private TextField firstNameField;
+
+    @FXML
+    private TextField lastNameField;
+
+    @FXML
     private ComboBox<AccountType> accountTypeComboBox;
 
     /**
@@ -49,6 +55,7 @@ public class Register_Controller {
      */
     @FXML
     public void handleLoginPressed() {
+        clearFields();
         mainApplication.displayLoginScene();
     }
 
@@ -57,6 +64,7 @@ public class Register_Controller {
      */
     @FXML
     private void handleCancelPressed() {
+        clearFields();
         mainApplication.displayWelcomeScene();
     }
 
@@ -66,7 +74,12 @@ public class Register_Controller {
     @FXML
     public void handleSubmitPressed() {
         if (isInputValid()) {
-            Profile profile = new Profile(usernameField.getText(), passwordField.getText(), accountTypeComboBox.getSelectionModel().getSelectedItem());
+            Profile profile = new Profile(
+                    usernameField.getText(),
+                    passwordField.getText(),
+                    accountTypeComboBox.getSelectionModel().getSelectedItem(),
+                    firstNameField.getText(),
+                    lastNameField.getText());
             if (!Model.getInstance().addProfile(profile)) {
                 //if the add fails, notify the user
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -77,6 +90,7 @@ public class Register_Controller {
 
                 alert.showAndWait();
             } else {
+                clearFields();
                 System.out.println(profile + " added to server");
                 if (profile.getAccountType().equals(AccountType.ADMIN)) {
                     mainApplication.displayAdminScene();
@@ -102,6 +116,14 @@ public class Register_Controller {
             errorMessage += "No valid password entered!\n";
         }
 
+        if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
+            errorMessage += "No first name entered!\n";
+        }
+
+        if (lastNameField.getText() == null || lastNameField.getText().length() == 0) {
+            errorMessage += "No last name entered!\n";
+        }
+
 
         //no error message means success / good input
         if (errorMessage.length() == 0) {
@@ -118,6 +140,13 @@ public class Register_Controller {
 
             return false;
         }
+    }
+
+    private void clearFields() {
+        usernameField.clear();
+        passwordField.clear();
+        firstNameField.clear();
+        lastNameField.clear();
     }
 
 }

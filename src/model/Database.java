@@ -50,6 +50,7 @@ public class Database {
                 return false;
             }
         }
+
         //never found the profile so safe to add it
         profiles.add(profile);
         //return the success signal
@@ -93,15 +94,16 @@ public class Database {
      * @param waterSourceReport the water source report to add to the database
      * @return true if success, false if water source report already in the database
      */
-    public boolean addWaterSourceReport(WaterSourceReport waterSourceReport) {
+    public boolean addWaterSourceReport(String date, String time, String nameOfReporter, Double latitude, Double longitude, TypeOfWater typeOfWater, ConditionOfWater conditionOfWater) {
         for (WaterSourceReport p : waterSourceReports) {
-            if (p.getLatitude().equals(waterSourceReport.getLatitude())
-                    && p.getLongitude().equals(waterSourceReport.getLongitude())) {
+            if (p.getLatitude().equals(latitude)
+                    && p.getLongitude().equals(longitude)) {
                 // found duplicate water source report
                 return false;
             }
         }
         //never found a duplicate water source report so safe to add it
+        WaterSourceReport waterSourceReport = new WaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater);
         waterSourceReports.add(waterSourceReport);
         //return the success signal
         return true;

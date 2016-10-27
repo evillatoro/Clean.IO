@@ -78,8 +78,8 @@ public class Model {
      * @param waterSourceReport the water source report to add to the database
      * @return true if water source report added, false if not added
      */
-    public boolean addWaterSourceReport(WaterSourceReport waterSourceReport) {
-        return database != null && database.addWaterSourceReport(waterSourceReport);
+    public boolean addWaterSourceReport(String date, String time, String nameOfReporter, Double latitude, Double longitude, TypeOfWater typeOfWater, ConditionOfWater conditionOfWater) {
+        return database != null && database.addWaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater);
     }
 
     /**
