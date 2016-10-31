@@ -2,10 +2,13 @@ package controller;
 
 import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import model.AccountType;
 import model.Model;
+import model.Profile;
 import model.WaterSourceReport;
 
 /**
@@ -21,6 +24,11 @@ public class Water_Source_Report_Overview_Controller {
 
     @FXML
     private TableColumn<WaterSourceReport, Integer> reportNumberColumn;
+
+    @FXML
+    private Button viewHistoryGraph;
+    @FXML
+    private Button viewWaterPurityReports;
 
     @FXML
     private Label dateLabel;
@@ -65,6 +73,16 @@ public class Water_Source_Report_Overview_Controller {
         waterSourceTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showWaterSourceReportDetails(newValue));
         reportNumberColumn.setStyle("-fx-alignment: CENTER;");
+    }
+
+    public void setProfile(Profile profile) {
+        if (profile.getAccountType().equals(AccountType.MANAGER)) {
+            viewWaterPurityReports.setVisible(true);
+            viewHistoryGraph.setVisible(true);
+        } else {
+            viewHistoryGraph.setVisible(false);
+            viewWaterPurityReports.setVisible(false);
+        }
     }
 
     /**

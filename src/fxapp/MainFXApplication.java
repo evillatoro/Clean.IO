@@ -47,6 +47,8 @@ public class MainFXApplication extends Application {
 
     private History_Graph_Controller historyGraphController;
 
+    private Water_Source_Report_Overview_Controller waterSourceOverviewController;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -148,6 +150,7 @@ public class MainFXApplication extends Application {
 
         // Give the controller access to the main app.
         Water_Source_Report_Overview_Controller controller = loader.getController();
+        waterSourceOverviewController = controller;
         controller.setMainApp(this);
 
         waterSourceReportOverviewScene = new Scene(waterSourceReportOverviewLayout);
@@ -232,6 +235,7 @@ public class MainFXApplication extends Application {
     }
 
     public void displayWaterSourceReportOverviewScene() {
+        waterSourceOverviewController.setProfile(Model.getInstance().getLoggedInProfile());
         window.setScene(waterSourceReportOverviewScene);
         window.show();
     }

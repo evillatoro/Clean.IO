@@ -55,8 +55,8 @@
             </GridPane>
             <ButtonBar buttonMinWidth="110.0" layoutX="146.0" layoutY="228.0" prefHeight="40.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                 <buttons>
-               <Button mnemonicParsing="false" onAction="#handleViewHistoryGraphPressed" text="History Graph" />
-               <Button mnemonicParsing="false" onAction="#handleViewWaterPurityReportsPressed" text="View Water Purity Reports" />
+               <Button fx:id="viewHistoryGraph" mnemonicParsing="false" onAction="#handleViewHistoryGraphPressed" text="History Graph" />
+               <Button fx:id="viewWaterPurityReports" mnemonicParsing="false" onAction="#handleViewWaterPurityReportsPressed" text="View Water Purity Reports" />
                     <Button mnemonicParsing="false" onAction="#handleBackToMainMenuPressed" text="Back To Menu" />
                 </buttons>
             </ButtonBar>
