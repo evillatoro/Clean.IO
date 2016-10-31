@@ -10,6 +10,15 @@ public class WaterPurityReport {
     private OverallCondition overallCondition;
     private final IntegerProperty thisInstanceReportNumber = new SimpleIntegerProperty();
 
+    private int month;
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
     public WaterPurityReport(String date, String time, String nameOfReporter, Double latitude, Double longitude, OverallCondition overallCondition, Double virusPPM, Double contaminantPPM) {
         this.date = date;
         this.time = time;

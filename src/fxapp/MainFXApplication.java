@@ -8,6 +8,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Model;
+import model.WaterPurityReport;
+import model.WaterSourceReport;
 
 import java.io.IOException;
 
@@ -33,11 +35,17 @@ public class MainFXApplication extends Application {
 
     private Scene adminScene;
 
+    private Scene historyGraphScene;
+
     private Main_InApplication_Controller mainInApplicationController;
 
     private Edit_Profile_Controller editProfileController;
 
     private Water_Availability_Controller waterAvailabilityController;
+
+    private Water_Purity_Report_Overview_Controller waterPurityOverviewController;
+
+    private History_Graph_Controller historyGraphController;
 
     public static void main(String[] args) {
         launch(args);
@@ -66,6 +74,7 @@ public class MainFXApplication extends Application {
         loadWaterPurityReportOverView();
         loadWaterAvailabilityScene();
         loadAdminScene();
+        loadHistoryGraphScene();
 
         displayWelcomeScene();
     }
@@ -151,6 +160,7 @@ public class MainFXApplication extends Application {
 
         // Give the controller access to the main app.
         Water_Purity_Report_Overview_Controller controller = loader.getController();
+        waterPurityOverviewController = controller;
         controller.setMainApp(this);
 
         waterPurityReportOverviewScene = new Scene(waterSourceReportOverviewLayout);
@@ -179,6 +189,19 @@ public class MainFXApplication extends Application {
         controller.setMainApp(this);
 
         adminScene = new Scene(waterSourceReportOverviewLayout);
+    }
+
+    private void loadHistoryGraphScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainFXApplication.class.getResource("../view/History_Graph_Screen.fxml"));
+        AnchorPane waterSourceReportOverviewLayout = loader.load();
+
+        // Give the controller access to the main app.
+        History_Graph_Controller controller = loader.getController();
+        historyGraphController = controller;
+        controller.setMainApp(this);
+
+        historyGraphScene = new Scene(waterSourceReportOverviewLayout);
     }
 
     public void displayWelcomeScene() {
@@ -213,8 +236,9 @@ public class MainFXApplication extends Application {
         window.show();
     }
 
-    public void displayWaterPurityReportOverviewScene() {
+    public void displayWaterPurityReportOverviewScene(WaterSourceReport waterSourceReport) {
         window.setScene(waterPurityReportOverviewScene);
+        waterPurityOverviewController.setData(waterSourceReport);
         window.show();
     }
 
@@ -226,6 +250,12 @@ public class MainFXApplication extends Application {
 
     public void displayAdminScene() {
         window.setScene(adminScene);
+        window.show();
+    }
+
+    public void displayHistoryGraphScene(WaterSourceReport waterSourceReport) {
+        historyGraphController.setWaterPurityData(waterSourceReport.getWaterPurityReports());
+        window.setScene(historyGraphScene);
         window.show();
     }
 

@@ -2,6 +2,8 @@ package model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class WaterSourceReport {
     private static int reportNumber = 1;
@@ -10,6 +12,9 @@ public class WaterSourceReport {
     private TypeOfWater typeOfWater;
     private ConditionOfWater conditionOfWater;
     private final IntegerProperty thisInstanceReportNumber = new SimpleIntegerProperty();
+
+    /** a list of all the water purity reports*/
+    private final ObservableList<WaterPurityReport> waterPurityReports = FXCollections.observableArrayList();
 
     public WaterSourceReport(String date, String time, String nameOfReporter, Double latitude, Double longitude, TypeOfWater typeOfWater, ConditionOfWater conditionOfWater) {
         this.date = date;
@@ -94,6 +99,10 @@ public class WaterSourceReport {
 
     public void setThisInstanceReportNumber(int thisInstanceReportNumber) {
         this.thisInstanceReportNumber.setValue(thisInstanceReportNumber);
+    }
+
+    public ObservableList<WaterPurityReport> getWaterPurityReports() {
+        return waterPurityReports;
     }
 
     public IntegerProperty getThisReportNumberProperty() {

@@ -21,8 +21,11 @@ public class Main_InApplication_Controller {
     @FXML
     private Label welcomeUser;
 
-    @FXML
-    private Button viewWaterPurityReports;
+//    @FXML
+//    private Button viewWaterPurityReports;
+//
+//    @FXML
+//    private Button viewHistoryGraph;
 
     /**
      * setup the main application link so we can call methods there
@@ -40,11 +43,13 @@ public class Main_InApplication_Controller {
     public void setProfile(Profile profile) {
         this.profile = profile;
         welcomeUser.setText("Welcome " + profile.getUsername());
-        if (profile.getAccountType().equals(AccountType.MANAGER)) {
-            viewWaterPurityReports.setVisible(true);
-        } else {
-            viewWaterPurityReports.setVisible(false);
-        }
+//        if (profile.getAccountType().equals(AccountType.MANAGER)) {
+//            viewWaterPurityReports.setVisible(true);
+//            viewHistoryGraph.setVisible(true);
+//        } else {
+//            viewHistoryGraph.setVisible(false);
+//            viewWaterPurityReports.setVisible(false);
+//        }
     }
 
     /**
@@ -90,7 +95,12 @@ public class Main_InApplication_Controller {
     private void handleViewWaterPurityReportsPressed() {
         // used to refresh
         //Model.getInstance().loadWaterPurityReports();
-        mainApplication.displayWaterPurityReportOverviewScene();
+        //mainApplication.displayWaterPurityReportOverviewScene();
+    }
+
+    @FXML
+    private void handleViewHistoryGraphPressed() {
+        //mainApplication.displayHistoryGraphScene();
     }
 
 }

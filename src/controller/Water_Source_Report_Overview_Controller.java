@@ -103,4 +103,17 @@ public class Water_Source_Report_Overview_Controller {
         mainFXApplicationApplication.displayMainInApplicationScene();
     }
 
+    @FXML
+    private void handleViewWaterPurityReportsPressed() {
+        if (waterSourceTable.getSelectionModel().getSelectedItem() != null) {
+            mainFXApplicationApplication.displayWaterPurityReportOverviewScene(waterSourceTable.getSelectionModel().getSelectedItem());
+        }
+    }
+
+    @FXML
+    private void handleViewHistoryGraphPressed() {
+        if (waterSourceTable.getSelectionModel().getSelectedItem() != null) {
+            mainFXApplicationApplication.displayHistoryGraphScene(waterSourceTable.getSelectionModel().getSelectedItem());
+        }
+    }
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.Model;
 import model.WaterPurityReport;
+import model.WaterSourceReport;
 
 /**
  * controller for the water source report overview
@@ -46,8 +47,10 @@ public class Water_Purity_Report_Overview_Controller {
      */
     public void setMainApp(MainFXApplication mainFXApplicationFXApplication) {
         mainFXApplicationApplication = mainFXApplicationFXApplication;
+    }
 
-        waterPurityTable.setItems(Model.getInstance().getWaterPurityReports());
+    public void setData(WaterSourceReport waterSourceReport) {
+        waterPurityTable.setItems(waterSourceReport.getWaterPurityReports());
     }
 
     /**
@@ -104,7 +107,7 @@ public class Water_Purity_Report_Overview_Controller {
      */
     @FXML
     private void handleBackToMainMenuPressed() {
-        mainFXApplicationApplication.displayMainInApplicationScene();
+        mainFXApplicationApplication.displayWaterSourceReportOverviewScene();
     }
 
 }

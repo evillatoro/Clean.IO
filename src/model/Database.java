@@ -151,14 +151,19 @@ public class Database {
      * @return true if success, false if profile already in the database
      */
     public boolean addWaterPurityReport(WaterPurityReport waterPurityReport) {
-        for (WaterPurityReport p : waterPurityReports) {
+//        for (WaterPurityReport p : waterPurityReports) {
+//            if (p.getLatitude().equals(waterPurityReport.getLatitude()) && p.getLongitude().equals(waterPurityReport.getLongitude())) {
+//                // found duplicate water purity report
+//                return false;
+//            }
+//        }
+        //never found duplicate water purity report so safe to add it
+        for (WaterSourceReport p : waterSourceReports) {
             if (p.getLatitude().equals(waterPurityReport.getLatitude()) && p.getLongitude().equals(waterPurityReport.getLongitude())) {
-                // found duplicate water purity report
-                return false;
+                p.getWaterPurityReports().add(waterPurityReport);
             }
         }
-        //never found duplicate water purity report so safe to add it
-        waterPurityReports.add(waterPurityReport);
+        //waterPurityReports.add(waterPurityReport);
         //return the success signal
         return true;
 
@@ -312,6 +317,10 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void loadWaterPurity() {
+
     }
 
 }

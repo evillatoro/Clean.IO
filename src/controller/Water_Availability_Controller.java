@@ -7,16 +7,14 @@ import com.lynden.gmapsfx.javascript.object.*;
 import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.*;
 import netscape.javascript.JSObject;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -46,6 +44,8 @@ public class Water_Availability_Controller implements Initializable, MapComponen
 
     @FXML
     private TitledPane submitWaterPurityReportPane;
+    @FXML
+    private DatePicker datePicker;
     @FXML
     private TextField latitudeField1;
     @FXML
@@ -123,14 +123,15 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                 map.setZoom(currentZoom - 1);
                 map.setZoom(currentZoom);
             } else if (submitWaterPurityReportPane.isExpanded()) {
-                LatLong hi = new LatLong((JSObject) obj.getMember("latLng"));
-                lol.setPosition(hi);
-                map.addMarker(lol);
-                latitudeField1.setText(hi.getLatitude() + "");
-                longitudeField1.setText(hi.getLongitude() + "");
-                int currentZoom = map.getZoom();
-                map.setZoom(currentZoom - 1);
-                map.setZoom(currentZoom);
+
+//                LatLong hi = new LatLong((JSObject) obj.getMember("latLng"));
+//                lol.setPosition(hi);
+//                map.addMarker(lol);
+//                latitudeField1.setText(hi.getLatitude() + "");
+//                longitudeField1.setText(hi.getLongitude() + "");
+//                int currentZoom = map.getZoom();
+//                map.setZoom(currentZoom - 1);
+//                map.setZoom(currentZoom);
             }
         });
 
@@ -147,6 +148,7 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             map.addUIEventHandler(marker,
                     UIEventType.click,
                     (JSObject obj) -> {
+
                         InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
                         infoWindowOptions.content(waterSourceReport.getTypeOfWater() + "<br>" + waterSourceReport.getConditionOfWater());
 
@@ -221,6 +223,13 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                 map.addUIEventHandler(marker,
                         UIEventType.click,
                         (JSObject obj) -> {
+                            if (submitWaterPurityReportPane.isExpanded()) {
+                                LatLong location = new LatLong((JSObject) obj.getMember("latLng"));
+                                latitudeField1.setText(location.getLatitude() + "");
+                                longitudeField1.setText(location.getLongitude() + "");
+
+                            }
+
                             InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
                             infoWindowOptions.content(waterSourceReport.getTypeOfWater().toString() + "<br>" +
                                     waterSourceReport.getConditionOfWater().toString());
@@ -230,6 +239,13 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                         });
 
                 map.addMarker(marker);
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success!");
+                alert.setHeaderText("Water report successfully submitted!");
+                //alert.setContentText("I have a great message for you!");
+
+                alert.showAndWait();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 Stage stage = mainFXApplicationApplication.getWindow();
@@ -249,11 +265,13 @@ public class Water_Availability_Controller implements Initializable, MapComponen
     @FXML
     private void handleSubmitWaterPurityButtonPressed() {
         if (isInputValid()) {
-            Date yeah = new Date();
-            SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
-            SimpleDateFormat timeFormatter = new SimpleDateFormat("h:mm a");
-            String date = dateFormatter.format(yeah);
-            String time = timeFormatter.format(yeah);
+//            Date yeah = new Date();
+//            SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+//            SimpleDateFormat timeFormatter = new SimpleDateFormat("h:mm a");
+            String date = datePicker.getValue().getMonthValue() + "/" + datePicker.getValue().getDayOfMonth() + "/" + datePicker.getValue().getYear();
+            String time = "default";
+//            String date = dateFormatter.format(yeah);
+//            String time = timeFormatter.format(yeah);
             String nameOfReporter = profile.getUsername();
             Double latitude = Double.parseDouble(latitudeField1.getText());
             Double longitude = Double.parseDouble(longitudeField1.getText());
@@ -262,6 +280,7 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             Double contaminantPPM = Double.parseDouble(contaminantPPMField.getText());
             WaterPurityReport waterPurityReport
                     = new WaterPurityReport(date, time, nameOfReporter, latitude, longitude, overallCondition, virusPPM, contaminantPPM);
+            waterPurityReport.setMonth(datePicker.getValue().getMonthValue());
 
             if (!Model.getInstance().addWaterPurityReport(waterPurityReport)) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -297,6 +316,9 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                 }
             } else if (submitWaterPurityReportPane.isExpanded()) {
                 //for now just check they actually typed something
+                if (datePicker.getValue() == null) {
+                    errorMessage += "No valid date!\n";
+                }
                 if (longitudeField1.getText() == null || longitudeField1.getText().length() == 0) {
                     errorMessage += "No valid longitude!\n";
                 }
