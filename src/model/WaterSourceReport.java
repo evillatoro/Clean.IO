@@ -13,6 +13,16 @@ public class WaterSourceReport {
     private ConditionOfWater conditionOfWater;
     private final IntegerProperty thisInstanceReportNumber = new SimpleIntegerProperty();
 
+    /**
+     * makes water source report
+     * @param date date
+     * @param time time
+     * @param nameOfReporter name of reporter
+     * @param latitude latitude
+     * @param longitude longitude
+     * @param typeOfWater type of water
+     * @param conditionOfWater condition of water
+     */
     /** a list of all the water purity reports*/
     private final ObservableList<WaterPurityReport> waterPurityReports = FXCollections.observableArrayList();
 

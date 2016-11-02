@@ -214,10 +214,11 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             Double longitude = Double.parseDouble(longitudeField.getText());
             TypeOfWater typeOfWater = typeOfWaterComboBox.getSelectionModel().getSelectedItem();
             ConditionOfWater conditionOfWater = conditionOfWaterComboBox.getSelectionModel().getSelectedItem();
-            WaterSourceReport waterSourceReport
-                    = new WaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater);
+//            WaterSourceReport waterSourceReport
+//                    = new WaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater);
 
-            if (Model.getInstance().addWaterSourceReport(waterSourceReport)) {
+            if (Model.getInstance().addWaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater)) {
+
                 Marker marker = new Marker(new MarkerOptions());
                 marker.setPosition(new LatLong(latitude, longitude));
                 map.addUIEventHandler(marker,
@@ -231,8 +232,8 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                             }
 
                             InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
-                            infoWindowOptions.content(waterSourceReport.getTypeOfWater().toString() + "<br>" +
-                                    waterSourceReport.getConditionOfWater().toString());
+                            infoWindowOptions.content(typeOfWater.toString() + "<br>" +
+                                    conditionOfWater.toString());
 
                             InfoWindow window = new InfoWindow(infoWindowOptions);
                             window.open(map, marker);
