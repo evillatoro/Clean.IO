@@ -33,6 +33,16 @@ public class History_Graph_Controller {
 
     private ObservableList<String> monthNames = FXCollections.observableArrayList();
 
+    private List<WaterPurityReport> waterPurityReportList;
+
+    private int virusPPMclick = 1;
+
+    private int contaminantPPMclick = 1;
+
+    private XYChart.Series<String, Double> virusSeries;
+
+    private XYChart.Series<String, Double> contaminantSeries;
+
     /**
      * setup the main application link so we can call methods there
      *
@@ -63,23 +73,24 @@ public class History_Graph_Controller {
 
     @FXML
     public void setWaterPurityData(List<WaterPurityReport> waterPurityReportList) {
-        double[] monthCounter = new double[12];
-        int[] eachMonthTotalReports = new int[12];
-        for (WaterPurityReport p : waterPurityReportList) {
-            int month = p.getMonth() - 1;
-            monthCounter[month] += p.getVirusPPM();
-            eachMonthTotalReports[month] ++;
-        }
-
-        double[] averages = new double[12];
-        for (int i = 0; i < 12; i++) {
-            if (eachMonthTotalReports[i] != 0) {
-                averages[i] = monthCounter[i] / eachMonthTotalReports[i];
-            }
-        }
-
-        XYChart.Series<String, Double> series = createMonthDataSeries(averages);
-        chart.getData().add(series);
+        this.waterPurityReportList = waterPurityReportList;
+//        double[] monthCounter = new double[12];
+//        int[] eachMonthTotalReports = new int[12];
+//        for (WaterPurityReport p : waterPurityReportList) {
+//            int month = p.getMonth() - 1;
+//            monthCounter[month] += p.getVirusPPM();
+//            eachMonthTotalReports[month] ++;
+//        }
+//
+//        double[] averages = new double[12];
+//        for (int i = 0; i < 12; i++) {
+//            if (eachMonthTotalReports[i] != 0) {
+//                averages[i] = monthCounter[i] / eachMonthTotalReports[i];
+//            }
+//        }
+//
+//        XYChart.Series<String, Double> series = createMonthDataSeries(averages);
+//        chart.getData().add(series);
     }
 
     private XYChart.Series<String, Double> createMonthDataSeries(double[] monthCounter) {
@@ -92,4 +103,60 @@ public class History_Graph_Controller {
 
         return series;
     }
+
+    @FXML
+    private void virusPPM() {
+        if (virusPPMclick % 2 != 0) {
+            double[] monthCounter = new double[12];
+            int[] eachMonthTotalReports = new int[12];
+            for (WaterPurityReport p : waterPurityReportList) {
+                int month = p.getMonth() - 1;
+                monthCounter[month] += p.getVirusPPM();
+                eachMonthTotalReports[month]++;
+            }
+
+            double[] averages = new double[12];
+            for (int i = 0; i < 12; i++) {
+                if (eachMonthTotalReports[i] != 0) {
+                    averages[i] = monthCounter[i] / eachMonthTotalReports[i];
+                }
+            }
+
+            virusSeries = createMonthDataSeries(averages);
+            virusSeries.setName("VirusPPM");
+            chart.getData().add(virusSeries);
+        } else {
+            chart.getData().remove(virusSeries);
+        }
+        virusPPMclick++;
+    }
+
+    @FXML
+    private void contaminantPPM() {
+        if (contaminantPPMclick % 2 != 0) {
+            double[] monthCounter = new double[12];
+            int[] eachMonthTotalReports = new int[12];
+            for (WaterPurityReport p : waterPurityReportList) {
+                int month = p.getMonth() - 1;
+                monthCounter[month] += p.getContaminantPPM();
+                eachMonthTotalReports[month]++;
+            }
+
+            double[] averages = new double[12];
+            for (int i = 0; i < 12; i++) {
+                if (eachMonthTotalReports[i] != 0) {
+                    averages[i] = monthCounter[i] / eachMonthTotalReports[i];
+                }
+            }
+
+            contaminantSeries = createMonthDataSeries(averages);
+            contaminantSeries.setName("ContaminantPPM");
+
+            chart.getData().add(contaminantSeries);
+        } else {
+            chart.getData().remove(contaminantSeries);
+        }
+        contaminantPPMclick++;
+    }
+
 }

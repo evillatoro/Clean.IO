@@ -16,6 +16,8 @@
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
                   <Label text="Label" />
+                  <Button mnemonicParsing="false" onAction="#virusPPM" text="Virus PPM" />
+                  <Button mnemonicParsing="false" onAction="#contaminantPPM" text="Contaminant&#10;PPM" />
                </children>
             </VBox>
          </left>
@@ -25,7 +27,7 @@
          <center>
             <LineChart fx:id="chart" BorderPane.alignment="CENTER">
               <xAxis>
-                <CategoryAxis fx:id="x" side="BOTTOM" />
+                <CategoryAxis side="BOTTOM" fx:id="x" />
               </xAxis>
               <yAxis>
                 <NumberAxis fx:id="y" side="LEFT" />
