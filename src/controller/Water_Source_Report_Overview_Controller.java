@@ -124,7 +124,8 @@ public class Water_Source_Report_Overview_Controller {
     @FXML
     private void handleViewWaterPurityReportsPressed() {
         if (waterSourceTable.getSelectionModel().getSelectedItem() != null) {
-            mainApplication.displayWaterPurityReportOverviewScene(waterSourceTable.getSelectionModel().getSelectedItem());
+            mainApplication.displayWaterPurityReportOverviewScene(
+                    waterSourceTable.getSelectionModel().getSelectedItem());
         }
     }
 

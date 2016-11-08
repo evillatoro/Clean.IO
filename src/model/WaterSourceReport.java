@@ -26,7 +26,8 @@ public class WaterSourceReport {
     /** a list of all the water purity reports*/
     private final ObservableList<WaterPurityReport> waterPurityReports = FXCollections.observableArrayList();
 
-    public WaterSourceReport(String date, String time, String nameOfReporter, Double latitude, Double longitude, TypeOfWater typeOfWater, ConditionOfWater conditionOfWater) {
+    public WaterSourceReport(String date, String time, String nameOfReporter, Double latitude, Double longitude,
+                             TypeOfWater typeOfWater, ConditionOfWater conditionOfWater) {
         this.date = date;
         this.time = time;
         this.nameOfReporter = nameOfReporter;

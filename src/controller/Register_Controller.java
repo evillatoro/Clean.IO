@@ -91,7 +91,7 @@ public class Register_Controller {
                 alert.showAndWait();
             } else {
                 clearFields();
-                System.out.println(profile + " added to server");
+                //System.out.println(profile + " added to server");
                 if (profile.getAccountType().equals(AccountType.ADMIN)) {
                     mainApplication.displayAdminScene();
                 } else {
@@ -109,18 +109,18 @@ public class Register_Controller {
         String errorMessage = "";
 
         //for now just check they actually typed something
-        if (usernameField.getText() == null || usernameField.getText().length() == 0) {
+        if ((usernameField.getText() == null) || (usernameField.getText().length() == 0)) {
             errorMessage += "No valid username!\n";
         }
-        if (passwordField.getText() == null || passwordField.getText().length() == 0) {
+        if ((passwordField.getText() == null) || (passwordField.getText().length() == 0)) {
             errorMessage += "No valid password entered!\n";
         }
 
-        if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
+        if ((firstNameField.getText() == null) || (firstNameField.getText().length() == 0)) {
             errorMessage += "No first name entered!\n";
         }
 
-        if (lastNameField.getText() == null || lastNameField.getText().length() == 0) {
+        if ((lastNameField.getText() == null) || (lastNameField.getText().length() == 0)) {
             errorMessage += "No last name entered!\n";
         }
 

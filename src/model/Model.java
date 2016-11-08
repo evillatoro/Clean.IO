@@ -2,7 +2,7 @@ package model;
 
 import javafx.collections.ObservableList;
 
-public class Model {
+public final class Model {
 
     private static final Model instance = new Model();
     public static Model getInstance() {
@@ -50,7 +50,7 @@ public class Model {
      * @return true if profile added, false if not added
      */
     public boolean addProfile(Profile profile) {
-        if (database != null && database.addProfile(profile)) {
+        if ((database != null) && database.addProfile(profile)) {
             loggedInProfile = profile;
             return true;
         }
@@ -58,10 +58,7 @@ public class Model {
     }
 
     public boolean removeProfile(String username) {
-        if (database != null && database.removeProfile(username)) {
-            return true;
-        }
-        return false;
+        return (database != null) && database.removeProfile(username);
     }
 
     public Profile searchForProfile(String username, String password) {
@@ -79,7 +76,7 @@ public class Model {
      * @return true if water source report added, false if not added
      */
     public boolean addWaterSourceReport(String date, String time, String nameOfReporter, Double latitude, Double longitude, TypeOfWater typeOfWater, ConditionOfWater conditionOfWater) {
-        return database != null && database.addWaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater);
+        return (database != null) && database.addWaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater);
     }
 
     /**
@@ -89,7 +86,7 @@ public class Model {
      * @return true if water purity report added, false if not added
      */
     public boolean addWaterPurityReport(WaterPurityReport waterPurityReport) {
-        return database != null && database.addWaterPurityReport(waterPurityReport);
+        return (database != null) && database.addWaterPurityReport(waterPurityReport);
     }
 
     /**

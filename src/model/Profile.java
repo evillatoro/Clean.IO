@@ -16,14 +16,14 @@ public class Profile {
      * @param password profile's password
      * @param accountType profile's account type
      */
-    public Profile(String username, String password, AccountType accountType, String firstname, String lastname) {
+    public Profile(String username, String password, AccountType accountType, String firstName, String lastName) {
         this.username = username;
         this.password = password;
         _accountType.set(accountType);
-        this.firstName = firstname;
-        this.lastName = lastname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.thisInstanceAccountNumber.setValue(totalNumberOfAccounts);
-        System.out.println(toString());
+        //System.out.println(toString());
         totalNumberOfAccounts++;
     }
 

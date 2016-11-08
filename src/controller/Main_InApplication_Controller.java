@@ -15,8 +15,8 @@ public class Main_InApplication_Controller {
     /** a link back to the main application class */
     private MainFXApplication mainApplication;
 
-    /** the profile who is logged in*/
-    private Profile profile;
+//    /** the profile who is logged in*/
+//    private Profile profile;
 
     @FXML
     private Label welcomeUser;
@@ -41,7 +41,7 @@ public class Main_InApplication_Controller {
      * @param profile profile that is logged in
      */
     public void setProfile(Profile profile) {
-        this.profile = profile;
+        //this.profile = profile;
         welcomeUser.setText("Welcome " + profile.getUsername());
 //        if (profile.getAccountType().equals(AccountType.MANAGER)) {
 //            viewWaterPurityReports.setVisible(true);

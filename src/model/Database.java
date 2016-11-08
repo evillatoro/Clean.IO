@@ -29,9 +29,9 @@ public class Database {
             String url = "jdbc:mysql://localhost/test?autoReconnect=true&useSSL=false";
             Class.forName ("com.mysql.jdbc.Driver").newInstance ();
             con = DriverManager.getConnection (url, "", "");
-            System.out.println("connection set");
+            //System.out.println("connection set");
         } catch(Exception e) {
-            System.out.println("Error " + e);
+            //System.out.println("Error " + e);
         }
     }
 
@@ -91,7 +91,8 @@ public class Database {
      * @param waterSourceReport the water source report to add to the database
      * @return true if success, false if water source report already in the database
      */
-    public boolean addWaterSourceReport(String date, String time, String nameOfReporter, Double latitude, Double longitude, TypeOfWater typeOfWater, ConditionOfWater conditionOfWater) {
+    public boolean addWaterSourceReport(String date, String time, String nameOfReporter, Double latitude,
+                                        Double longitude, TypeOfWater typeOfWater, ConditionOfWater conditionOfWater) {
 //        for (WaterSourceReport p : waterSourceReports) {
 //            if (p.getLatitude().equals(latitude)
 //                    && p.getLongitude().equals(longitude)) {

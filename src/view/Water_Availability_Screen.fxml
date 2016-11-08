@@ -12,9 +12,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Water_Availability_Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.Water_Availability_Controller">
    <top>
-      <Button mnemonicParsing="false" onAction="#handleBackToMainMenuPressed" text="Back to Menu" BorderPane.alignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#handleBackToMainMenuPressed" text="Back to Menu"
+              BorderPane.alignment="CENTER" />
    </top>
    <center>
       <GoogleMapView fx:id="mapView" BorderPane.alignment="CENTER" />
@@ -22,9 +25,11 @@
    <left>
       <Accordion prefHeight="373.0" prefWidth="114.0" BorderPane.alignment="CENTER">
         <panes>
-            <TitledPane fx:id="submitWaterReportPane" animated="false" onMouseClicked="#handleWaterReportTabPressed" text="Submit Water Report">
+            <TitledPane fx:id="submitWaterReportPane" animated="false" onMouseClicked="#handleWaterReportTabPressed"
+                        text="Submit Water Report">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <VBox prefHeight="345.0" prefWidth="164.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <VBox prefHeight="345.0" prefWidth="164.0" spacing="5.0" AnchorPane.bottomAnchor="0.0"
+                          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <Label text="Location of Water" />
                         <TextField fx:id="latitudeField" alignment="TOP_LEFT" promptText="Latitude" />
                         <TextField fx:id="longitudeField" promptText="Longitude" />
@@ -32,13 +37,16 @@
                         <ComboBox fx:id="typeOfWaterComboBox" prefWidth="150.0" />
                         <Label text="Condition of Water" />
                         <ComboBox fx:id="conditionOfWaterComboBox" prefWidth="150.0" />
-                        <Button mnemonicParsing="false" onAction="#handleSubmitWaterReportButtonPressed" text="Submit" />
+                        <Button mnemonicParsing="false" onAction="#handleSubmitWaterReportButtonPressed"
+                                text="Submit" />
                     </VBox>
                 </AnchorPane>
             </TitledPane>
-            <TitledPane fx:id="submitWaterPurityReportPane" animated="false" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleWaterPurityTabPressed" text="Submit Water Purity Report">
+            <TitledPane fx:id="submitWaterPurityReportPane" animated="false" layoutX="10.0" layoutY="10.0"
+                        onMouseClicked="#handleWaterPurityTabPressed" text="Submit Water Purity Report">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <VBox prefHeight="345.0" prefWidth="164.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <VBox prefHeight="345.0" prefWidth="164.0" spacing="5.0" AnchorPane.bottomAnchor="0.0"
+                          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <Label text="Click on a marker" />
                      <Label text="Date" />
                      <DatePicker fx:id="datePicker" />
@@ -51,7 +59,8 @@
                         <TextField fx:id="virusPPMField" layoutX="10.0" layoutY="64.0" />
                         <Label layoutX="10.0" layoutY="150.0" text="Contaminant PPM" />
                         <TextField fx:id="contaminantPPMField" layoutX="10.0" layoutY="172.0" />
-                        <Button mnemonicParsing="false" onAction="#handleSubmitWaterPurityButtonPressed" text="Submit" />
+                        <Button mnemonicParsing="false" onAction="#handleSubmitWaterPurityButtonPressed"
+                                text="Submit" />
                     </VBox>
                 </AnchorPane>
             </TitledPane>

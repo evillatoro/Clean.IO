@@ -88,10 +88,10 @@ public class Login_Controller {
         String errorMessage = "";
 
         //for now just check they actually typed something
-        if (usernameField.getText() == null || usernameField.getText().length() == 0) {
+        if ((usernameField.getText() == null) || (usernameField.getText().length() == 0)) {
             errorMessage += "No valid username!\n";
         }
-        if (passwordField.getText() == null || passwordField.getText().length() == 0) {
+        if ((passwordField.getText() == null) || (passwordField.getText().length() == 0)) {
             errorMessage += "No valid password entered!\n";
         }
 

@@ -96,7 +96,9 @@ public class Water_Availability_Controller implements Initializable, MapComponen
         MapOptions options = new MapOptions();
 
         //set up the center location for the map
-        LatLong center = new LatLong(33.7756,-84.3963);
+        Double centerLat = 33.7756;
+        Double centerLong = -84.3963;
+        LatLong center = new LatLong(centerLat, centerLong);
 
         options.center(center)
                 .zoom(9)
@@ -154,7 +156,8 @@ public class Water_Availability_Controller implements Initializable, MapComponen
 
                         }
                         InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
-                        infoWindowOptions.content(waterSourceReport.getTypeOfWater() + "<br>" + waterSourceReport.getConditionOfWater());
+                        infoWindowOptions.content(waterSourceReport.getTypeOfWater() + "<br>"
+                                + waterSourceReport.getConditionOfWater());
 
                         InfoWindow window = new InfoWindow(infoWindowOptions);
                         window.open(map, marker);
@@ -219,9 +222,11 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             TypeOfWater typeOfWater = typeOfWaterComboBox.getSelectionModel().getSelectedItem();
             ConditionOfWater conditionOfWater = conditionOfWaterComboBox.getSelectionModel().getSelectedItem();
 //            WaterSourceReport waterSourceReport
-//                    = new WaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater);
+//                    = new WaterSourceReport(date, time, nameOfReporter, latitude,
+//                    longitude, typeOfWater, conditionOfWater);
 
-            if (Model.getInstance().addWaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater)) {
+            if (Model.getInstance().addWaterSourceReport(date, time, nameOfReporter, latitude, longitude,
+                    typeOfWater, conditionOfWater)) {
 
                 Marker marker = new Marker(new MarkerOptions());
                 marker.setPosition(new LatLong(latitude, longitude));
@@ -273,7 +278,8 @@ public class Water_Availability_Controller implements Initializable, MapComponen
 //            Date yeah = new Date();
 //            SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
 //            SimpleDateFormat timeFormatter = new SimpleDateFormat("h:mm a");
-            String date = datePicker.getValue().getMonthValue() + "/" + datePicker.getValue().getDayOfMonth() + "/" + datePicker.getValue().getYear();
+            String date = datePicker.getValue().getMonthValue() + "/" + datePicker.getValue().getDayOfMonth() + "/"
+                    + datePicker.getValue().getYear();
             String time = "default";
 //            String date = dateFormatter.format(yeah);
 //            String time = timeFormatter.format(yeah);
@@ -284,7 +290,8 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             Double virusPPM = Double.parseDouble(virusPPMField.getText());
             Double contaminantPPM = Double.parseDouble(contaminantPPMField.getText());
             WaterPurityReport waterPurityReport
-                    = new WaterPurityReport(date, time, nameOfReporter, latitude, longitude, overallCondition, virusPPM, contaminantPPM);
+                    = new WaterPurityReport(date, time, nameOfReporter, latitude, longitude,
+                    overallCondition, virusPPM, contaminantPPM);
             waterPurityReport.setMonth(datePicker.getValue().getMonthValue());
             waterPurityReport.setYear(datePicker.getValue().getYear());
 
@@ -314,10 +321,10 @@ public class Water_Availability_Controller implements Initializable, MapComponen
         String errorMessage = "";
             if (submitWaterReportPane.isExpanded()) {
                 //for now just check they actually typed something
-                if (longitudeField.getText() == null || longitudeField.getText().length() == 0) {
+                if ((longitudeField.getText() == null) || (longitudeField.getText().length() == 0)) {
                     errorMessage += "No valid longitude!\n";
                 }
-                if (latitudeField.getText() == null || latitudeField.getText().length() == 0) {
+                if ((latitudeField.getText() == null) || (latitudeField.getText().length() == 0)) {
                     errorMessage += "No valid latitude!\n";
                 }
             } else if (submitWaterPurityReportPane.isExpanded()) {
@@ -325,18 +332,18 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                 if (datePicker.getValue() == null) {
                     errorMessage += "No valid date!\n";
                 }
-                if (longitudeField1.getText() == null || longitudeField1.getText().length() == 0) {
+                if ((longitudeField1.getText() == null) || (longitudeField1.getText().length() == 0)) {
                     errorMessage += "No valid longitude!\n";
                 }
-                if (latitudeField1.getText() == null || latitudeField1.getText().length() == 0) {
+                if ((latitudeField1.getText() == null) || (latitudeField1.getText().length() == 0)) {
                     errorMessage += "No valid latitude!\n";
                 }
 
                 //for now just check they actually typed something
-                if (virusPPMField.getText() == null || virusPPMField.getText().length() == 0) {
+                if ((virusPPMField.getText() == null) || (virusPPMField.getText().length() == 0)) {
                     errorMessage += "No valid virus PPM!\n";
                 }
-                if (contaminantPPMField.getText() == null || contaminantPPMField.getText().length() == 0) {
+                if ((contaminantPPMField.getText() == null) || (contaminantPPMField.getText().length() == 0)) {
                     errorMessage += "No valid contaminant PPM!\n";
                 }
             }

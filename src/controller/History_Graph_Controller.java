@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by edwinvillatoro on 10/31/16.
+ * Controller for the history graph
  */
 public class History_Graph_Controller {
     /** a link back to the main application class */
@@ -35,13 +35,15 @@ public class History_Graph_Controller {
 
     private List<WaterPurityReport> waterPurityReportList;
 
-    private int virusPPMclick = 1;
+    private int virusPPMClick = 1;
 
-    private int contaminantPPMclick = 1;
+    private int contaminantPPMClick = 1;
 
     private XYChart.Series<String, Double> virusSeries;
 
     private XYChart.Series<String, Double> contaminantSeries;
+
+    private int numOfMonths;
 
     @FXML
     private TextField yearField;
@@ -61,8 +63,8 @@ public class History_Graph_Controller {
         x.setLabel("Month");
         y.setLabel("PPM");
         //String[] months = DateFormatSymbols.getInstance(Locale.ENGLISH).getMonths();
-        String[] months = new String[12];
-        for(int i = 0; i < 12; i++) {
+        String[] months = new String[numOfMonths];
+        for(int i = 0; i < months.length; i++) {
             months[i] = (i + 1) + "";
         }
         monthNames.addAll(Arrays.asList(months));
@@ -75,7 +77,6 @@ public class History_Graph_Controller {
         mainFXApplication.displayWaterSourceReportOverviewScene();
     }
 
-    @FXML
     public void setWaterPurityData(List<WaterPurityReport> waterPurityReportList) {
         this.waterPurityReportList = waterPurityReportList;
 //        double[] monthCounter = new double[12];
@@ -111,9 +112,9 @@ public class History_Graph_Controller {
     @FXML
     private void virusPPM() {
         if (isInputValid()) {
-            if (virusPPMclick % 2 != 0) {
-                double[] monthCounter = new double[12];
-                int[] eachMonthTotalReports = new int[12];
+            if ((virusPPMClick % 2) != 0) {
+                double[] monthCounter = new double[numOfMonths];
+                int[] eachMonthTotalReports = new int[numOfMonths];
                 for (WaterPurityReport p : waterPurityReportList) {
                     if (yearField.getText().equals(p.getYear() + "")) {
                         int month = p.getMonth() - 1;
@@ -122,8 +123,8 @@ public class History_Graph_Controller {
                     }
                 }
 
-                double[] averages = new double[12];
-                for (int i = 0; i < 12; i++) {
+                double[] averages = new double[numOfMonths];
+                for (int i = 0; i < averages.length; i++) {
                     if (eachMonthTotalReports[i] != 0) {
                         averages[i] = monthCounter[i] / eachMonthTotalReports[i];
                     }
@@ -135,16 +136,16 @@ public class History_Graph_Controller {
             } else {
                 chart.getData().remove(virusSeries);
             }
-            virusPPMclick++;
+            virusPPMClick++;
         }
     }
 
     @FXML
     private void contaminantPPM() {
         if (isInputValid()) {
-            if (contaminantPPMclick % 2 != 0) {
-                double[] monthCounter = new double[12];
-                int[] eachMonthTotalReports = new int[12];
+            if ((contaminantPPMClick % 2) != 0) {
+                double[] monthCounter = new double[numOfMonths];
+                int[] eachMonthTotalReports = new int[numOfMonths];
                 for (WaterPurityReport p : waterPurityReportList) {
                     if (yearField.getText().equals(p.getYear() + "")) {
                         int month = p.getMonth() - 1;
@@ -153,8 +154,8 @@ public class History_Graph_Controller {
                     }
                 }
 
-                double[] averages = new double[12];
-                for (int i = 0; i < 12; i++) {
+                double[] averages = new double[numOfMonths];
+                for (int i = 0; i < averages.length; i++) {
                     if (eachMonthTotalReports[i] != 0) {
                         averages[i] = monthCounter[i] / eachMonthTotalReports[i];
                     }
@@ -167,7 +168,7 @@ public class History_Graph_Controller {
             } else {
                 chart.getData().remove(contaminantSeries);
             }
-            contaminantPPMclick++;
+            contaminantPPMClick++;
         }
     }
 
@@ -180,7 +181,7 @@ public class History_Graph_Controller {
         String errorMessage = "";
 
         //for now just check they actually typed something
-        if (yearField.getText() == null || yearField.getText().length() == 0) {
+        if ((yearField.getText() == null) || (yearField.getText().length() == 0)) {
             errorMessage += "No valid year!";
         }
 

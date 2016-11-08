@@ -30,7 +30,8 @@ public class WaterPurityReport {
         return month;
     }
 
-    public WaterPurityReport(String date, String time, String nameOfReporter, Double latitude, Double longitude, OverallCondition overallCondition, Double virusPPM, Double contaminantPPM) {
+    public WaterPurityReport(String date, String time, String nameOfReporter, Double latitude, Double longitude,
+                             OverallCondition overallCondition, Double virusPPM, Double contaminantPPM) {
         this.date = date;
         this.time = time;
         this.nameOfReporter = nameOfReporter;
