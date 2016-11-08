@@ -75,11 +75,13 @@ public class Database {
 
     private void addProfileToDatabase(Profile profile) {
         try {
-            String query = "INSERT INTO profiles (id, username, password, accountType) values (null, ?, ?, ?)";
+            String query = "INSERT INTO profiles (id, username, password, accountType, firstName, lastName) values (null, ?, ?, ?, ?, ?)";
             st = con.prepareStatement(query);
             st.setString(1, profile.getUsername());
             st.setString(2, profile.getPassword());
             st.setString(3, profile.getAccountType().toString());
+            st.setString(4, profile.getFirstName());
+            st.setString(5, profile.getLastName());
             st.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -236,8 +238,8 @@ public class Database {
                 username = rs.getString("username");
                 password = rs.getString("password");
                 AccountType accountType = AccountType.valueOf(rs.getString("accountType").toUpperCase());
-                String firstName = "default";
-                String lastName = "default";
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
                 Profile profile = new Profile(username, password, accountType, firstName, lastName);
                 return profile;
             }
