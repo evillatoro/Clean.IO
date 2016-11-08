@@ -5,10 +5,21 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class WaterPurityReport {
     private static int reportNumber = 1;
-    private String date, time, nameOfReporter;
+    private String date;
+    private String time;
+    private String nameOfReporter;
     private Double latitude, longitude, virusPPM, contaminantPPM;
     private OverallCondition overallCondition;
     private final IntegerProperty thisInstanceReportNumber = new SimpleIntegerProperty();
+
+    private int year;
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getYear() {
+        return year;
+    }
 
     private int month;
     public void setMonth(int month) {

@@ -18,4 +18,5 @@ public enum OverallCondition {
     public String toString() {
         return type;
     }
+
 }

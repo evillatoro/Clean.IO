@@ -19,4 +19,5 @@ public enum ConditionOfWater {
     public String toString() {
         return type;
     }
+
 }

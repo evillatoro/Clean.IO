@@ -19,4 +19,5 @@ public enum AccountType {
     public String toString() {
         return type;
     }
+
 }

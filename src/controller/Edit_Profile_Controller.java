@@ -11,7 +11,7 @@ import model.Profile;
 public class Edit_Profile_Controller {
 
     /** a link back to the main application class */
-    private MainFXApplication mainFXApplicationApplication;
+    private MainFXApplication mainApplication;
 
     /** the profile whose data is being manipulated*/
     private Profile profile;
@@ -40,10 +40,10 @@ public class Edit_Profile_Controller {
     /**
      * setup the main application link so we can call methods there
      *
-     * @param mainFXApplicationFXApplication  a reference (link) to our main class
+     * @param mainFXApplication  a reference (link) to our main class
      */
-    public void setMainApp(MainFXApplication mainFXApplicationFXApplication) {
-        mainFXApplicationApplication = mainFXApplicationFXApplication;
+    public void setMainApp(MainFXApplication mainFXApplication) {
+        mainApplication = mainFXApplication;
     }
 
     /**
@@ -67,7 +67,7 @@ public class Edit_Profile_Controller {
             profile.setFirstName(firstNameField.getText());
             profile.setLastName(lastNameField.getText());
             profile.setPassword(passwordField.getText());
-            mainFXApplicationApplication.displayMainInApplicationScene();
+            mainApplication.displayMainInApplicationScene();
     }
 
     /**
@@ -75,7 +75,7 @@ public class Edit_Profile_Controller {
      */
     @FXML
     private void handleCancelPressed() {
-        mainFXApplicationApplication.displayMainInApplicationScene();
+        mainApplication.displayMainInApplicationScene();
     }
 
 }

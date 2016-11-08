@@ -8,19 +8,19 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import model.WaterPurityReport;
 
-import java.text.DateFormatSymbols;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by edwinvillatoro on 10/31/16.
  */
 public class History_Graph_Controller {
     /** a link back to the main application class */
-    private MainFXApplication mainFXApplicationApplication;
+    private MainFXApplication mainFXApplication;
 
     @FXML
     private CategoryAxis x = new CategoryAxis();
@@ -43,13 +43,17 @@ public class History_Graph_Controller {
 
     private XYChart.Series<String, Double> contaminantSeries;
 
+    @FXML
+    private TextField yearField;
+
+
     /**
      * setup the main application link so we can call methods there
      *
      * @param mainFXApplicationFXApplication  a reference (link) to our main class
      */
     public void setMainApp(MainFXApplication mainFXApplicationFXApplication) {
-        mainFXApplicationApplication = mainFXApplicationFXApplication;
+        mainFXApplication = mainFXApplicationFXApplication;
     }
 
     @FXML
@@ -68,7 +72,7 @@ public class History_Graph_Controller {
     @FXML
     private void handleBackPressed() {
         chart.getData().clear();
-        mainFXApplicationApplication.displayMainInApplicationScene();
+        mainFXApplication.displayWaterSourceReportOverviewScene();
     }
 
     @FXML
@@ -106,57 +110,95 @@ public class History_Graph_Controller {
 
     @FXML
     private void virusPPM() {
-        if (virusPPMclick % 2 != 0) {
-            double[] monthCounter = new double[12];
-            int[] eachMonthTotalReports = new int[12];
-            for (WaterPurityReport p : waterPurityReportList) {
-                int month = p.getMonth() - 1;
-                monthCounter[month] += p.getVirusPPM();
-                eachMonthTotalReports[month]++;
-            }
-
-            double[] averages = new double[12];
-            for (int i = 0; i < 12; i++) {
-                if (eachMonthTotalReports[i] != 0) {
-                    averages[i] = monthCounter[i] / eachMonthTotalReports[i];
+        if (isInputValid()) {
+            if (virusPPMclick % 2 != 0) {
+                double[] monthCounter = new double[12];
+                int[] eachMonthTotalReports = new int[12];
+                for (WaterPurityReport p : waterPurityReportList) {
+                    if (yearField.getText().equals(p.getYear() + "")) {
+                        int month = p.getMonth() - 1;
+                        monthCounter[month] += p.getVirusPPM();
+                        eachMonthTotalReports[month]++;
+                    }
                 }
-            }
 
-            virusSeries = createMonthDataSeries(averages);
-            virusSeries.setName("VirusPPM");
-            chart.getData().add(virusSeries);
-        } else {
-            chart.getData().remove(virusSeries);
+                double[] averages = new double[12];
+                for (int i = 0; i < 12; i++) {
+                    if (eachMonthTotalReports[i] != 0) {
+                        averages[i] = monthCounter[i] / eachMonthTotalReports[i];
+                    }
+                }
+
+                virusSeries = createMonthDataSeries(averages);
+                virusSeries.setName("VirusPPM");
+                chart.getData().add(virusSeries);
+            } else {
+                chart.getData().remove(virusSeries);
+            }
+            virusPPMclick++;
         }
-        virusPPMclick++;
     }
 
     @FXML
     private void contaminantPPM() {
-        if (contaminantPPMclick % 2 != 0) {
-            double[] monthCounter = new double[12];
-            int[] eachMonthTotalReports = new int[12];
-            for (WaterPurityReport p : waterPurityReportList) {
-                int month = p.getMonth() - 1;
-                monthCounter[month] += p.getContaminantPPM();
-                eachMonthTotalReports[month]++;
-            }
-
-            double[] averages = new double[12];
-            for (int i = 0; i < 12; i++) {
-                if (eachMonthTotalReports[i] != 0) {
-                    averages[i] = monthCounter[i] / eachMonthTotalReports[i];
+        if (isInputValid()) {
+            if (contaminantPPMclick % 2 != 0) {
+                double[] monthCounter = new double[12];
+                int[] eachMonthTotalReports = new int[12];
+                for (WaterPurityReport p : waterPurityReportList) {
+                    if (yearField.getText().equals(p.getYear() + "")) {
+                        int month = p.getMonth() - 1;
+                        monthCounter[month] += p.getContaminantPPM();
+                        eachMonthTotalReports[month]++;
+                    }
                 }
+
+                double[] averages = new double[12];
+                for (int i = 0; i < 12; i++) {
+                    if (eachMonthTotalReports[i] != 0) {
+                        averages[i] = monthCounter[i] / eachMonthTotalReports[i];
+                    }
+                }
+
+                contaminantSeries = createMonthDataSeries(averages);
+                contaminantSeries.setName("ContaminantPPM");
+
+                chart.getData().add(contaminantSeries);
+            } else {
+                chart.getData().remove(contaminantSeries);
             }
-
-            contaminantSeries = createMonthDataSeries(averages);
-            contaminantSeries.setName("ContaminantPPM");
-
-            chart.getData().add(contaminantSeries);
-        } else {
-            chart.getData().remove(contaminantSeries);
+            contaminantPPMclick++;
         }
-        contaminantPPMclick++;
+    }
+
+    /**
+     * validates the user input in the text fields.
+     *
+     * @return true if the input is valid
+     */
+    private boolean isInputValid() {
+        String errorMessage = "";
+
+        //for now just check they actually typed something
+        if (yearField.getText() == null || yearField.getText().length() == 0) {
+            errorMessage += "No valid year!";
+        }
+
+        //no error message means success / good input
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            // Show the error message if bad data
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(mainFXApplication.getWindow());
+            alert.setTitle("Invalid Fields");
+            alert.setHeaderText("Please correct invalid fields");
+            alert.setContentText(errorMessage);
+
+            alert.showAndWait();
+
+            return false;
+        }
     }
 
 }

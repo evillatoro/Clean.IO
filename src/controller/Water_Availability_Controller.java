@@ -14,7 +14,6 @@ import netscape.javascript.JSObject;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -58,17 +57,17 @@ public class Water_Availability_Controller implements Initializable, MapComponen
     private TextField contaminantPPMField;
 
     /** a link back to the main application class */
-    private MainFXApplication mainFXApplicationApplication;
+    private MainFXApplication mainApplication;
 
     private Marker lol;
 
     /**
      * setup the main application link so we can call methods there
      *
-     * @param mainFXApplicationFXApplication  a reference (link) to our main class
+     * @param mainFXApplication  a reference (link) to our main class
      */
-    public void setMainApp(MainFXApplication mainFXApplicationFXApplication) {
-        mainFXApplicationApplication = mainFXApplicationFXApplication;
+    public void setMainApp(MainFXApplication mainFXApplication) {
+        mainApplication = mainFXApplication;
     }
 
     /**
@@ -89,7 +88,7 @@ public class Water_Availability_Controller implements Initializable, MapComponen
         clearAll();
         submitWaterPurityReportPane.setExpanded(false);
         submitWaterReportPane.setExpanded(false);
-        mainFXApplicationApplication.displayMainInApplicationScene();
+        mainApplication.displayMainInApplicationScene();
     }
 
     @Override
@@ -148,7 +147,12 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             map.addUIEventHandler(marker,
                     UIEventType.click,
                     (JSObject obj) -> {
+                        if (submitWaterPurityReportPane.isExpanded()) {
+                            LatLong location = new LatLong((JSObject) obj.getMember("latLng"));
+                            latitudeField1.setText(location.getLatitude() + "");
+                            longitudeField1.setText(location.getLongitude() + "");
 
+                        }
                         InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
                         infoWindowOptions.content(waterSourceReport.getTypeOfWater() + "<br>" + waterSourceReport.getConditionOfWater());
 
@@ -249,7 +253,7 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                 alert.showAndWait();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                Stage stage = mainFXApplicationApplication.getWindow();
+                Stage stage = mainApplication.getWindow();
                 alert.initOwner(stage);
                 alert.setTitle("Error");
                 alert.setHeaderText("Someone has already submitted a report for this location.");
@@ -282,10 +286,11 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             WaterPurityReport waterPurityReport
                     = new WaterPurityReport(date, time, nameOfReporter, latitude, longitude, overallCondition, virusPPM, contaminantPPM);
             waterPurityReport.setMonth(datePicker.getValue().getMonthValue());
+            waterPurityReport.setYear(datePicker.getValue().getYear());
 
             if (!Model.getInstance().addWaterPurityReport(waterPurityReport)) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                Stage stage = mainFXApplicationApplication.getWindow();
+                Stage stage = mainApplication.getWindow();
                 alert.initOwner(stage);
                 alert.setTitle("Error");
                 alert.setHeaderText("Someone has already submitted a report for this location.");
@@ -342,7 +347,7 @@ public class Water_Availability_Controller implements Initializable, MapComponen
         } else {
             // Show the error message if bad data
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(mainFXApplicationApplication.getWindow());
+            alert.initOwner(mainApplication.getWindow());
             alert.setTitle("Invalid Fields");
             alert.setHeaderText("Please correct invalid fields");
             alert.setContentText(errorMessage);

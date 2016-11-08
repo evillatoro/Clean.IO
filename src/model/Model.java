@@ -18,8 +18,8 @@ public class Model {
     private Model() {
         database = new Database();
         // used to load all the reports when the the application starts
-        //database.loadWaterPurityReports();
-        //database.loadWaterSourceReports();
+        database.loadWaterSourceReports();
+        database.loadWaterPurityReports();
         // default profiles to use to test
         addProfile(new Profile("u", "p", AccountType.USER));
         addProfile(new Profile("w", "p", AccountType.WORKER));

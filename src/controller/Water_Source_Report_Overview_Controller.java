@@ -17,7 +17,7 @@ import model.WaterSourceReport;
 public class Water_Source_Report_Overview_Controller {
 
     /** a link back to the main application class */
-    private MainFXApplication mainFXApplicationApplication;
+    private MainFXApplication mainApplication;
 
     @FXML
     private TableView<WaterSourceReport> waterSourceTable;
@@ -48,10 +48,10 @@ public class Water_Source_Report_Overview_Controller {
     /**
      * setup the main application link so we can call methods there
      *
-     * @param mainFXApplicationFXApplication  a reference (link) to our main class
+     * @param mainFXApplication  a reference (link) to our main class
      */
-    public void setMainApp(MainFXApplication mainFXApplicationFXApplication) {
-        mainFXApplicationApplication = mainFXApplicationFXApplication;
+    public void setMainApp(MainFXApplication mainFXApplication) {
+        mainApplication = mainFXApplication;
 
         waterSourceTable.setItems(Model.getInstance().getWaterSourceReports());
     }
@@ -118,20 +118,20 @@ public class Water_Source_Report_Overview_Controller {
      */
     @FXML
     private void handleBackToMainMenuPressed() {
-        mainFXApplicationApplication.displayMainInApplicationScene();
+        mainApplication.displayMainInApplicationScene();
     }
 
     @FXML
     private void handleViewWaterPurityReportsPressed() {
         if (waterSourceTable.getSelectionModel().getSelectedItem() != null) {
-            mainFXApplicationApplication.displayWaterPurityReportOverviewScene(waterSourceTable.getSelectionModel().getSelectedItem());
+            mainApplication.displayWaterPurityReportOverviewScene(waterSourceTable.getSelectionModel().getSelectedItem());
         }
     }
 
     @FXML
     private void handleViewHistoryGraphPressed() {
         if (waterSourceTable.getSelectionModel().getSelectedItem() != null) {
-            mainFXApplicationApplication.displayHistoryGraphScene(waterSourceTable.getSelectionModel().getSelectedItem());
+            mainApplication.displayHistoryGraphScene(waterSourceTable.getSelectionModel().getSelectedItem());
         }
     }
 }

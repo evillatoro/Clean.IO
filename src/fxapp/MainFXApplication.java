@@ -8,7 +8,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Model;
-import model.WaterPurityReport;
 import model.WaterSourceReport;
 
 import java.io.IOException;
@@ -87,7 +86,7 @@ public class MainFXApplication extends Application {
         BorderPane welcomeScreenLayout = loader.load();
 
         // Give the controller access to the main app.
-        Welcome_Controller controller = loader.getController();
+        Welcome_Scene_Controller controller = loader.getController();
         controller.setMainApp(this);
 
         welcomeScene = new Scene(welcomeScreenLayout);

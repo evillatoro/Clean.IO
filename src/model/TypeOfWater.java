@@ -21,4 +21,5 @@ public enum TypeOfWater {
     public String toString() {
         return type;
     }
+
 }
