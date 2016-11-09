@@ -2,9 +2,7 @@ package controller;
 
 import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import model.AccountType;
 import model.Profile;
 
 /**

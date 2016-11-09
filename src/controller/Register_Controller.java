@@ -72,7 +72,7 @@ public class Register_Controller {
      * called when the user clicks submit
      */
     @FXML
-    public void handleSubmitPressed() {
+    private void handleSubmitPressed() {
         if (isInputValid()) {
             Profile profile = new Profile(
                     usernameField.getText(),
@@ -147,7 +147,7 @@ public class Register_Controller {
     }
 
     /**
-     * reset all fields
+     * resets all fields
      */
     private void resetFields() {
         usernameField.clear();

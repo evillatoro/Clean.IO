@@ -12,7 +12,9 @@ public class WaterPurityReport {
     private OverallCondition overallCondition;
     private final IntegerProperty thisInstanceReportNumber = new SimpleIntegerProperty();
 
+    private int month;
     private int year;
+
     public void setYear(int year) {
         this.year = year;
     }
@@ -21,7 +23,6 @@ public class WaterPurityReport {
         return year;
     }
 
-    private int month;
     public void setMonth(int month) {
         this.month = month;
     }

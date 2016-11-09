@@ -7,11 +7,17 @@ import javafx.collections.ObservableList;
 
 public class WaterSourceReport {
     private static int reportNumber = 1;
-    private String date, time, nameOfReporter;
-    private Double latitude, longitude;
+    private String date;
+    private String time;
+    private String nameOfReporter;
+    private Double latitude;
+    private Double longitude;
     private TypeOfWater typeOfWater;
     private ConditionOfWater conditionOfWater;
     private final IntegerProperty thisInstanceReportNumber = new SimpleIntegerProperty();
+
+    /** a list of all the water purity reports*/
+    private final ObservableList<WaterPurityReport> waterPurityReports = FXCollections.observableArrayList();
 
     /**
      * makes water source report
@@ -23,9 +29,6 @@ public class WaterSourceReport {
      * @param typeOfWater type of water
      * @param conditionOfWater condition of water
      */
-    /** a list of all the water purity reports*/
-    private final ObservableList<WaterPurityReport> waterPurityReports = FXCollections.observableArrayList();
-
     public WaterSourceReport(String date, String time, String nameOfReporter, Double latitude, Double longitude,
                              TypeOfWater typeOfWater, ConditionOfWater conditionOfWater) {
         this.date = date;

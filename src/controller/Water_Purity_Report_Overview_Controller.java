@@ -9,7 +9,7 @@ import model.WaterPurityReport;
 import model.WaterSourceReport;
 
 /**
- * controller for the water source report overview
+ * controller for the water purity report overview
  */
 public class Water_Purity_Report_Overview_Controller {
 
@@ -29,9 +29,9 @@ public class Water_Purity_Report_Overview_Controller {
     @FXML
     private Label nameOfWorkerLabel;
     @FXML
-    private Label latOfLocationOfWaterLabel;
+    private Label latOfLocationLabel;
     @FXML
-    private Label longOfLocationOfWaterLabel;
+    private Label longOfLocationLabel;
     @FXML
     private Label overallConditionLabel;
     @FXML
@@ -48,6 +48,10 @@ public class Water_Purity_Report_Overview_Controller {
         mainApplication = mainFXApplication;
     }
 
+    /**
+     * sets the water source report that has all the water purity reports to be displayed
+     * @param waterSourceReport water source report that has its water purity reports displayed
+     */
     public void setData(WaterSourceReport waterSourceReport) {
         waterPurityTable.setItems(waterSourceReport.getWaterPurityReports());
     }
@@ -83,8 +87,8 @@ public class Water_Purity_Report_Overview_Controller {
             dateLabel.setText(waterPurityReport.getDate());
             timeLabel.setText(waterPurityReport.getTime());
             nameOfWorkerLabel.setText(waterPurityReport.getNameOfReporter());
-            latOfLocationOfWaterLabel.setText(waterPurityReport.getLatitude().toString());
-            longOfLocationOfWaterLabel.setText(waterPurityReport.getLongitude().toString());
+            latOfLocationLabel.setText(waterPurityReport.getLatitude().toString());
+            longOfLocationLabel.setText(waterPurityReport.getLongitude().toString());
             overallConditionLabel.setText(waterPurityReport.getOverallCondition().toString());
             virusPPMLabel.setText(waterPurityReport.getVirusPPM().toString());
             contaminantPPMLabel.setText(waterPurityReport.getContaminantPPM().toString());
@@ -93,8 +97,8 @@ public class Water_Purity_Report_Overview_Controller {
             dateLabel.setText("");
             timeLabel.setText("");
             nameOfWorkerLabel.setText("");
-            latOfLocationOfWaterLabel.setText("");
-            longOfLocationOfWaterLabel.setText("");
+            latOfLocationLabel.setText("");
+            longOfLocationLabel.setText("");
             overallConditionLabel.setText("");
             virusPPMLabel.setText("");
             contaminantPPMLabel.setText("");
