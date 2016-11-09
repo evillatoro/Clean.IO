@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * enum for type of water
+ */
 public enum TypeOfWater {
     Bottled("Bottled"),
     Well("Well"),

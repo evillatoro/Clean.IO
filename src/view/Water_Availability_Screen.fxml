@@ -31,8 +31,8 @@
                     <VBox prefHeight="345.0" prefWidth="164.0" spacing="5.0" AnchorPane.bottomAnchor="0.0"
                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <Label text="Location of Water" />
-                        <TextField fx:id="latitudeField" alignment="TOP_LEFT" promptText="Latitude" />
-                        <TextField fx:id="longitudeField" promptText="Longitude" />
+                        <TextField fx:id="latitudeFieldWSR" alignment="TOP_LEFT" promptText="Latitude" />
+                        <TextField fx:id="longitudeFieldWSR" promptText="Longitude" />
                         <Label text="Type of Water" />
                         <ComboBox fx:id="typeOfWaterComboBox" prefWidth="150.0" />
                         <Label text="Condition of Water" />

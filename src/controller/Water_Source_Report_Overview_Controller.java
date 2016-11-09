@@ -17,7 +17,7 @@ import model.WaterSourceReport;
 public class Water_Source_Report_Overview_Controller {
 
     /** a link back to the main application class */
-    private MainFXApplication mainApplication;
+    private MainFXApplication mainFXApplication;
 
     @FXML
     private TableView<WaterSourceReport> waterSourceTable;
@@ -51,7 +51,7 @@ public class Water_Source_Report_Overview_Controller {
      * @param mainFXApplication  a reference (link) to our main class
      */
     public void setMainApp(MainFXApplication mainFXApplication) {
-        mainApplication = mainFXApplication;
+        this.mainFXApplication = mainFXApplication;
 
         waterSourceTable.setItems(Model.getInstance().getWaterSourceReports());
     }
@@ -75,6 +75,10 @@ public class Water_Source_Report_Overview_Controller {
         reportNumberColumn.setStyle("-fx-alignment: CENTER;");
     }
 
+    /**
+     * sets up what the logged in user can see
+     * @param profile profile with a certain authorization
+     */
     public void setProfile(Profile profile) {
         if (profile.getAccountType().equals(AccountType.MANAGER)) {
             viewWaterPurityReports.setVisible(true);
@@ -118,21 +122,28 @@ public class Water_Source_Report_Overview_Controller {
      */
     @FXML
     private void handleBackToMainMenuPressed() {
-        mainApplication.displayMainInApplicationScene();
+        mainFXApplication.displayMainInApplicationScene();
     }
 
+    /**
+     * called when the user clicks view water purity reports
+     */
     @FXML
     private void handleViewWaterPurityReportsPressed() {
         if (waterSourceTable.getSelectionModel().getSelectedItem() != null) {
-            mainApplication.displayWaterPurityReportOverviewScene(
+            mainFXApplication.displayWaterPurityReportOverviewScene(
                     waterSourceTable.getSelectionModel().getSelectedItem());
         }
     }
 
+    /**
+     * called when the user clicks view history graph
+     */
     @FXML
     private void handleViewHistoryGraphPressed() {
         if (waterSourceTable.getSelectionModel().getSelectedItem() != null) {
-            mainApplication.displayHistoryGraphScene(waterSourceTable.getSelectionModel().getSelectedItem());
+            mainFXApplication.displayHistoryGraphScene(waterSourceTable.getSelectionModel().getSelectedItem());
         }
     }
+
 }

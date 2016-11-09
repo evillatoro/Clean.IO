@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 public class Welcome_Scene_Controller {
 
     /** a link back to the main application class */
-    private MainFXApplication mainApplication;
+    private MainFXApplication mainFXApplication;
 
     /**
      * setup the main application link so we can call methods there
@@ -17,7 +17,7 @@ public class Welcome_Scene_Controller {
      * @param mainFXApplication  a reference (link) to our main class
      */
     public void setMainApp(MainFXApplication mainFXApplication) {
-        mainApplication = mainFXApplication;
+        this.mainFXApplication = mainFXApplication;
     }
 
     /**
@@ -25,7 +25,7 @@ public class Welcome_Scene_Controller {
      */
     @FXML
     private void handleLoginPressed() {
-        mainApplication.displayLoginScene();
+        mainFXApplication.displayLoginScene();
     }
 
     /**
@@ -33,7 +33,7 @@ public class Welcome_Scene_Controller {
      */
     @FXML
     private void handleRegisterPressed() {
-        mainApplication.displayRegisterScene();
+        mainFXApplication.displayRegisterScene();
     }
 
 }

@@ -28,7 +28,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost/test?autoReconnect=true&useSSL=false";
             Class.forName ("com.mysql.jdbc.Driver").newInstance ();
-            con = DriverManager.getConnection (url, "", "");
+            con = DriverManager.getConnection (url, "root", "edwin10285");
             //System.out.println("connection set");
         } catch(Exception e) {
             //System.out.println("Error " + e);

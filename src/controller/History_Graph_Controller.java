@@ -19,6 +19,7 @@ import java.util.List;
  * Controller for the history graph
  */
 public class History_Graph_Controller {
+
     /** a link back to the main application class */
     private MainFXApplication mainFXApplication;
 
@@ -52,10 +53,10 @@ public class History_Graph_Controller {
     /**
      * setup the main application link so we can call methods there
      *
-     * @param mainFXApplicationFXApplication  a reference (link) to our main class
+     * @param mainFXApplication  a reference (link) to our main class
      */
-    public void setMainApp(MainFXApplication mainFXApplicationFXApplication) {
-        mainFXApplication = mainFXApplicationFXApplication;
+    public void setMainApp(MainFXApplication mainFXApplication) {
+        this.mainFXApplication = mainFXApplication;
     }
 
     @FXML
@@ -77,6 +78,10 @@ public class History_Graph_Controller {
         mainFXApplication.displayWaterSourceReportOverviewScene();
     }
 
+    /**
+     * loads the water purity reports of a water source report
+     * @param waterPurityReportList list of water purity reports of a water source report
+     */
     public void setWaterPurityData(List<WaterPurityReport> waterPurityReportList) {
         this.waterPurityReportList = waterPurityReportList;
 //        double[] monthCounter = new double[12];
@@ -98,6 +103,11 @@ public class History_Graph_Controller {
 //        chart.getData().add(series);
     }
 
+    /**
+     * makes the lines of the graph
+     * @param monthCounter arrary that contains data that will be displayed
+     * @return series that will be displayed on a graph
+     */
     private XYChart.Series<String, Double> createMonthDataSeries(double[] monthCounter) {
         XYChart.Series<String,Double> series = new XYChart.Series<String,Double>();
 
@@ -109,6 +119,9 @@ public class History_Graph_Controller {
         return series;
     }
 
+    /**
+     * loads the virusPPM averages and puts them in the graph
+     */
     @FXML
     private void virusPPM() {
         if (isInputValid()) {
@@ -140,6 +153,9 @@ public class History_Graph_Controller {
         }
     }
 
+    /**
+     * loads the contaminantPPM averages and puts them into the graph
+     */
     @FXML
     private void contaminantPPM() {
         if (isInputValid()) {

@@ -28,14 +28,15 @@ public class Water_Availability_Controller implements Initializable, MapComponen
 
     private GoogleMap map;
 
+    /** logged in user **/
     private Profile profile;
 
     @FXML
     private TitledPane submitWaterReportPane;
     @FXML
-    private TextField latitudeField;
+    private TextField latitudeFieldWSR;
     @FXML
-    private TextField longitudeField;
+    private TextField longitudeFieldWSR;
     @FXML
     private ComboBox<TypeOfWater> typeOfWaterComboBox;
     @FXML
@@ -118,8 +119,8 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                 LatLong hi = new LatLong((JSObject) obj.getMember("latLng"));
                 lol.setPosition(hi);
                 map.addMarker(lol);
-                latitudeField.setText(hi.getLatitude() + "");
-                longitudeField.setText(hi.getLongitude() + "");
+                latitudeFieldWSR.setText(hi.getLatitude() + "");
+                longitudeFieldWSR.setText(hi.getLongitude() + "");
                 int currentZoom = map.getZoom();
                 map.setZoom(currentZoom - 1);
                 map.setZoom(currentZoom);
@@ -217,8 +218,8 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             String date = dateFormatter.format(yeah);
             String time = timeFormatter.format(yeah);
             String nameOfReporter = profile.getUsername();
-            Double latitude = Double.parseDouble(latitudeField.getText());
-            Double longitude = Double.parseDouble(longitudeField.getText());
+            Double latitude = Double.parseDouble(latitudeFieldWSR.getText());
+            Double longitude = Double.parseDouble(longitudeFieldWSR.getText());
             TypeOfWater typeOfWater = typeOfWaterComboBox.getSelectionModel().getSelectedItem();
             ConditionOfWater conditionOfWater = conditionOfWaterComboBox.getSelectionModel().getSelectedItem();
 //            WaterSourceReport waterSourceReport
@@ -321,10 +322,10 @@ public class Water_Availability_Controller implements Initializable, MapComponen
         String errorMessage = "";
             if (submitWaterReportPane.isExpanded()) {
                 //for now just check they actually typed something
-                if ((longitudeField.getText() == null) || (longitudeField.getText().length() == 0)) {
+                if ((longitudeFieldWSR.getText() == null) || (longitudeFieldWSR.getText().length() == 0)) {
                     errorMessage += "No valid longitude!\n";
                 }
-                if ((latitudeField.getText() == null) || (latitudeField.getText().length() == 0)) {
+                if ((latitudeFieldWSR.getText() == null) || (latitudeFieldWSR.getText().length() == 0)) {
                     errorMessage += "No valid latitude!\n";
                 }
             } else if (submitWaterPurityReportPane.isExpanded()) {
@@ -366,8 +367,8 @@ public class Water_Availability_Controller implements Initializable, MapComponen
     }
 
     private void clearAll() {
-        latitudeField.setText("");
-        longitudeField.setText("");
+        latitudeFieldWSR.setText("");
+        longitudeFieldWSR.setText("");
         typeOfWaterComboBox.setValue(TypeOfWater.Bottled);
         conditionOfWaterComboBox.setValue(ConditionOfWater.Potable);
 

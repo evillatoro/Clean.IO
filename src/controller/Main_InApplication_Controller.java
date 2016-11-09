@@ -88,19 +88,19 @@ public class Main_InApplication_Controller {
         mainApplication.displayWaterSourceReportOverviewScene();
     }
 
-    /**
-     * called when user clicks view water purity reports
-     */
-    @FXML
-    private void handleViewWaterPurityReportsPressed() {
-        // used to refresh
-        //Model.getInstance().loadWaterPurityReports();
-        //mainApplication.displayWaterPurityReportOverviewScene();
-    }
-
-    @FXML
-    private void handleViewHistoryGraphPressed() {
-        //mainApplication.displayHistoryGraphScene();
-    }
+//    /**
+//     * called when user clicks view water purity reports
+//     */
+//    @FXML
+//    private void handleViewWaterPurityReportsPressed() {
+//        // used to refresh
+//        //Model.getInstance().loadWaterPurityReports();
+//        //mainApplication.displayWaterPurityReportOverviewScene();
+//    }
+//
+//    @FXML
+//    private void handleViewHistoryGraphPressed() {
+//        //mainApplication.displayHistoryGraphScene();
+//    }
 
 }

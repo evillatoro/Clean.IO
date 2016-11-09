@@ -55,7 +55,7 @@ public class Register_Controller {
      */
     @FXML
     public void handleLoginPressed() {
-        clearFields();
+        resetFields();
         mainApplication.displayLoginScene();
     }
 
@@ -64,7 +64,7 @@ public class Register_Controller {
      */
     @FXML
     private void handleCancelPressed() {
-        clearFields();
+        resetFields();
         mainApplication.displayWelcomeScene();
     }
 
@@ -89,8 +89,12 @@ public class Register_Controller {
                 alert.setContentText("Profile was not added, check that they are not already in server!");
 
                 alert.showAndWait();
+                firstNameField.clear();
+                lastNameField.clear();
+                usernameField.clear();
+                passwordField.clear();
             } else {
-                clearFields();
+                resetFields();
                 //System.out.println(profile + " added to server");
                 if (profile.getAccountType().equals(AccountType.ADMIN)) {
                     mainApplication.displayAdminScene();
@@ -142,11 +146,15 @@ public class Register_Controller {
         }
     }
 
-    private void clearFields() {
+    /**
+     * reset all fields
+     */
+    private void resetFields() {
         usernameField.clear();
         passwordField.clear();
         firstNameField.clear();
         lastNameField.clear();
+        accountTypeComboBox.setValue(AccountType.USER);
     }
 
 }

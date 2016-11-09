@@ -1,5 +1,8 @@
 package model;
 
+/**enum for overall condition
+ *
+ */
 public enum OverallCondition {
     Safe("Safe"),
     Treatable("Treatable"),
