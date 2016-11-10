@@ -194,8 +194,8 @@ public class Database {
 
     private void addWaterPurityReportToDatabase(WaterPurityReport waterPurityReport) {
         try {
-            String query = "INSERT INTO waterpurityreports (id, date, time, nameOfReporter, latitude, longitude, overallCondition, virusPPM, contaminantPPM) values " +
-                    "(null, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO waterpurityreports (id, date, time, nameOfReporter, latitude, longitude, overallCondition, virusPPM, contaminantPPM, year, month) values " +
+                    "(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             st = con.prepareStatement(query);
             st.setString(1, waterPurityReport.getDate());
             st.setString(2 ,waterPurityReport.getTime());
@@ -205,6 +205,8 @@ public class Database {
             st.setString(6, waterPurityReport.getOverallCondition().toString());
             st.setDouble(7, waterPurityReport.getVirusPPM());
             st.setDouble(8, waterPurityReport.getContaminantPPM());
+            st.setInt(9, waterPurityReport.getYear());
+            st.setInt(10, waterPurityReport.getMonth());
             st.execute();
 
         } catch (SQLException e) {
@@ -334,14 +336,19 @@ public class Database {
                 OverallCondition overallCondition = OverallCondition.valueOf(rs.getString("overallCondition"));
                 Double virusPPM = rs.getDouble("virusPPM");
                 Double contaminantPPM = rs.getDouble("contaminantPPM");
+                int year = rs.getInt("year");
+                int month = rs.getInt("month");
                 WaterPurityReport waterPurityReport
                         = new WaterPurityReport(date, time, nameOfReporter, latitude, longitude, overallCondition, virusPPM, contaminantPPM);
                 int id = rs.getInt("id");
+                waterPurityReport.setMonth(month);
+                waterPurityReport.setYear(year);
                 waterPurityReport.setThisInstanceReportNumber(id);
 
                 for (WaterSourceReport p : waterSourceReports) {
                     if (p.getLatitude().equals(waterPurityReport.getLatitude()) && p.getLongitude().equals(waterPurityReport.getLongitude())) {
                         p.getWaterPurityReports().add(waterPurityReport);
+                        System.out.println("added " + p);
                     }
                 }
 

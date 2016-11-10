@@ -44,7 +44,7 @@ public class History_Graph_Controller {
 
     private XYChart.Series<String, Double> contaminantSeries;
 
-    private int numOfMonths;
+    private int numOfMonths = 12;
 
     @FXML
     private TextField yearField;
@@ -72,6 +72,9 @@ public class History_Graph_Controller {
         x.setCategories(monthNames);
     }
 
+    /**
+     * 
+     */
     @FXML
     private void handleBackPressed() {
         chart.getData().clear();
