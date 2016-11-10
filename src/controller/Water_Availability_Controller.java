@@ -222,12 +222,11 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             Double longitude = Double.parseDouble(longitudeFieldWSR.getText());
             TypeOfWater typeOfWater = typeOfWaterComboBox.getSelectionModel().getSelectedItem();
             ConditionOfWater conditionOfWater = conditionOfWaterComboBox.getSelectionModel().getSelectedItem();
-//            WaterSourceReport waterSourceReport
-//                    = new WaterSourceReport(date, time, nameOfReporter, latitude,
-//                    longitude, typeOfWater, conditionOfWater);
+            WaterSourceReport waterSourceReport
+                    = new WaterSourceReport(date, time, nameOfReporter, latitude,
+                    longitude, typeOfWater, conditionOfWater);
 
-            if (Model.getInstance().addWaterSourceReport(date, time, nameOfReporter, latitude, longitude,
-                    typeOfWater, conditionOfWater)) {
+            if (Model.getInstance().addWaterSourceReport(waterSourceReport)) {
 
                 Marker marker = new Marker(new MarkerOptions());
                 marker.setPosition(new LatLong(latitude, longitude));
@@ -276,14 +275,9 @@ public class Water_Availability_Controller implements Initializable, MapComponen
     @FXML
     private void handleSubmitWaterPurityButtonPressed() {
         if (isInputValid()) {
-//            Date yeah = new Date();
-//            SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
-//            SimpleDateFormat timeFormatter = new SimpleDateFormat("h:mm a");
             String date = datePicker.getValue().getMonthValue() + "/" + datePicker.getValue().getDayOfMonth() + "/"
                     + datePicker.getValue().getYear();
             String time = "default";
-//            String date = dateFormatter.format(yeah);
-//            String time = timeFormatter.format(yeah);
             String nameOfReporter = profile.getUsername();
             Double latitude = Double.parseDouble(latitudeField1.getText());
             Double longitude = Double.parseDouble(longitudeField1.getText());
@@ -303,6 +297,13 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                 alert.setTitle("Error");
                 alert.setHeaderText("Someone has already submitted a report for this location.");
                 //alert.setContentText("wrong username or password");
+
+                alert.showAndWait();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success!");
+                alert.setHeaderText("Water purity report successfully submitted!");
+                //alert.setContentText("I have a great message for you!");
 
                 alert.showAndWait();
             }

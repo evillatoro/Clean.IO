@@ -17,9 +17,6 @@ public final class Model {
 
     private Model() {
         database = new Database();
-        // used to load all the reports when the the application starts
-        database.loadWaterSourceReports();
-        database.loadWaterPurityReports();
         // default profiles to use to test
         addProfile(new Profile("u", "p", AccountType.USER, "user", "e"));
         addProfile(new Profile("w", "p", AccountType.WORKER, "worker", "e"));
@@ -75,8 +72,8 @@ public final class Model {
      * @param waterSourceReport the water source report to add to the database
      * @return true if water source report added, false if not added
      */
-    public boolean addWaterSourceReport(String date, String time, String nameOfReporter, Double latitude, Double longitude, TypeOfWater typeOfWater, ConditionOfWater conditionOfWater) {
-        return (database != null) && database.addWaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater);
+    public boolean addWaterSourceReport(WaterSourceReport waterSourceReport) {
+        return (database != null) && database.addWaterSourceReport(waterSourceReport);
     }
 
     /**
@@ -105,20 +102,6 @@ public final class Model {
      */
     public Profile getLoggedInProfile() {
         return loggedInProfile;
-    }
-
-    /**
-     * loads the water source reports from database
-     */
-    public void loadWaterSourceReports() {
-        database.loadWaterSourceReports();
-    }
-
-    /**
-     * loads the water purity reports from database
-     */
-    public void loadWaterPurityReports() {
-        database.loadWaterPurityReports();
     }
 
 }
