@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * account type enum
+ */
 public enum AccountType {
     USER("User"),
     WORKER("Worker"),

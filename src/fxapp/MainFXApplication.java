@@ -1,6 +1,16 @@
 package fxapp;
 
-import controller.*;
+import controller.Welcome_Scene_Controller;
+import controller.History_Graph_Controller;
+import controller.Login_Controller;
+import controller.Admin_Controller;
+import controller.Edit_Profile_Controller;
+import controller.Water_Availability_Controller;
+import controller.Main_InApplication_Controller;
+import controller.Register_Controller;
+import controller.Water_Source_Report_Overview_Controller;
+import controller.Water_Purity_Report_Overview_Controller;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,6 +22,7 @@ import model.WaterSourceReport;
 
 import java.io.IOException;
 
+/** starts application*/
 public class MainFXApplication extends Application {
 
     private Stage window;
@@ -48,6 +59,10 @@ public class MainFXApplication extends Application {
 
     private Water_Source_Report_Overview_Controller waterSourceOverviewController;
 
+    /**
+     * start up application
+     * @param args default
+     */
     public static void main(String[] args) {
         launch(args);
     }
@@ -206,56 +221,88 @@ public class MainFXApplication extends Application {
         historyGraphScene = new Scene(waterSourceReportOverviewLayout);
     }
 
+    /**
+     * display welcome scene
+     */
     public void displayWelcomeScene() {
         window.setScene(welcomeScene);
         window.show();
     }
 
+    /**
+     * display login scene
+     */
     public void displayLoginScene() {
         window.setScene(loginScene);
         window.show();
     }
 
+    /**
+     * display register scene
+     */
     public void displayRegisterScene() {
         window.setScene(registerScene);
         window.show();
     }
 
+    /**
+     * display main in application scene
+     */
     public void displayMainInApplicationScene() {
         mainInApplicationController.setProfile(Model.getInstance().getLoggedInProfile());
         window.setScene(mainInApplicationScene);
         window.show();
     }
 
+    /**
+     * display edit profile scene
+     */
     public void displayEditProfileScene() {
         editProfileController.setProfile(Model.getInstance().getLoggedInProfile());
         window.setScene(editProfileScene);
         window.show();
     }
 
+    /**
+     * display water source report overview scene
+     */
     public void displayWaterSourceReportOverviewScene() {
         waterSourceOverviewController.setProfile(Model.getInstance().getLoggedInProfile());
         window.setScene(waterSourceReportOverviewScene);
         window.show();
     }
 
+    /**
+     * display water purity report overview scene
+     * @param waterSourceReport water source report that owns the water purity reports to be displayed
+     */
     public void displayWaterPurityReportOverviewScene(WaterSourceReport waterSourceReport) {
         window.setScene(waterPurityReportOverviewScene);
         waterPurityOverviewController.setData(waterSourceReport);
         window.show();
     }
 
+    /**
+     * display water availability scene
+     */
     public void displayWaterAvailabilityScene() {
         waterAvailabilityController.setProfile(Model.getInstance().getLoggedInProfile());
         window.setScene(waterAvailabilityScene);
         window.show();
     }
 
+    /**
+     * display admin scene
+     */
     public void displayAdminScene() {
         window.setScene(adminScene);
         window.show();
     }
 
+    /**
+     * display history graph scene
+     * @param waterSourceReport water source report that will have its water purity reports data shown
+     */
     public void displayHistoryGraphScene(WaterSourceReport waterSourceReport) {
         historyGraphController.setWaterPurityData(waterSourceReport.getWaterPurityReports());
         window.setScene(historyGraphScene);

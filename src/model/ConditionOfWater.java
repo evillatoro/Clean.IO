@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * condition of water enum
+ */
 public enum ConditionOfWater {
     Waste("Waste"),
     Treatable_Clear("Treatable-Clear"),

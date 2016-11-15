@@ -3,6 +3,9 @@ package model;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+/**
+ * water purity report
+ */
 public class WaterPurityReport {
     private static int reportNumber = 1;
     private String date;

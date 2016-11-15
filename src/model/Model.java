@@ -39,9 +39,9 @@ public final class Model {
         return database.getWaterSourceReports();
     }
 
-    public ObservableList<WaterPurityReport> getWaterPurityReports() {
-        return database.getWaterPurityReports();
-    }
+//    public ObservableList<WaterPurityReport> getWaterPurityReports() {
+//        return database.getWaterPurityReports();
+//    }
 
     /**
      * add a profile to the database
@@ -75,8 +75,10 @@ public final class Model {
      * @param waterSourceReport the water source report to add to the database
      * @return true if water source report added, false if not added
      */
-    public boolean addWaterSourceReport(String date, String time, String nameOfReporter, Double latitude, Double longitude, TypeOfWater typeOfWater, ConditionOfWater conditionOfWater) {
-        return (database != null) && database.addWaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater);
+    public boolean addWaterSourceReport(String date, String time, String nameOfReporter, Double latitude,
+                                        Double longitude, TypeOfWater typeOfWater, ConditionOfWater conditionOfWater) {
+        return (database != null) && database.addWaterSourceReport(date, time, nameOfReporter,
+                latitude, longitude, typeOfWater, conditionOfWater);
     }
 
     /**
@@ -89,14 +91,14 @@ public final class Model {
         return (database != null) && database.addWaterPurityReport(waterPurityReport);
     }
 
-    /**
-     * sets the profile that is logged in
-     *
-     * @param profile profile that is logged in
-     */
-    public void setLoggedInProfile(Profile profile) {
-        loggedInProfile = profile;
-    }
+//    /**
+//     * sets the profile that is logged in
+//     *
+//     * @param profile profile that is logged in
+//     */
+//    public void setLoggedInProfile(Profile profile) {
+//        loggedInProfile = profile;
+//    }
 
     /**
      * gets the profile that is logged in
@@ -107,18 +109,18 @@ public final class Model {
         return loggedInProfile;
     }
 
-    /**
-     * loads the water source reports from database
-     */
-    public void loadWaterSourceReports() {
-        database.loadWaterSourceReports();
-    }
+//    /**
+//     * loads the water source reports from database
+//     */
+//    public void loadWaterSourceReports() {
+//        database.loadWaterSourceReports();
+//    }
 
-    /**
-     * loads the water purity reports from database
-     */
-    public void loadWaterPurityReports() {
-        database.loadWaterPurityReports();
-    }
+//    /**
+//     * loads the water purity reports from database
+//     */
+//    public void loadWaterPurityReports() {
+//        database.loadWaterPurityReports();
+//    }
 
 }
