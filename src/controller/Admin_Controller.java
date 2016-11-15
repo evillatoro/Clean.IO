@@ -48,14 +48,18 @@ public class Admin_Controller {
     private void initialize() {
         // Initialize the profile table with the one column
         accountNumberColumn.setCellValueFactory(
-                cellData -> cellData.getValue().thisInstanceAccountNumberProperty().asObject());
+                cellData -> cellData.getValue().
+                        thisInstanceAccountNumberProperty().asObject());
 
         // Clear profile details.
         showProfileDetails(null);
 
-        // Listen for selection changes and show the profile details when changed.
-        profileTable.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> showProfileDetails(newValue));
+        // Listen for selection changes and show the profile
+        // details when changed.
+        profileTable.getSelectionModel().selectedItemProperty().
+                addListener(
+                (observable, oldValue, newValue) ->
+                        showProfileDetails(newValue));
         accountNumberColumn.setStyle("-fx-alignment: CENTER;");
     }
 
@@ -84,7 +88,8 @@ public class Admin_Controller {
     private void handleDeletePressed() {
         int selectedIndex = profileTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            Model.getInstance().removeProfile(profileTable.getSelectionModel().getSelectedItem().getUsername());
+            Model.getInstance().removeProfile(profileTable.
+                    getSelectionModel().getSelectedItem().getUsername());
         } else {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);

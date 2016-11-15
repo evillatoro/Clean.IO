@@ -24,15 +24,15 @@ public class History_Graph_Controller {
     private MainFXApplication mainFXApplication;
 
     @FXML
-    private final CategoryAxis x = new CategoryAxis();
+    private CategoryAxis x = new CategoryAxis();
 
     @FXML
-    private final NumberAxis y = new NumberAxis();
+    private NumberAxis y = new NumberAxis();
 
     @FXML
     private LineChart<String, Double> chart;
 
-    private final ObservableList<String> monthNames =
+    private ObservableList<String> monthNames =
             FXCollections.observableArrayList();
 
     private List<WaterPurityReport> waterPurityReportList;
@@ -45,7 +45,7 @@ public class History_Graph_Controller {
 
     private XYChart.Series<String, Double> contaminantSeries;
 
-    private final int numOfMonths = 12;
+    private int numOfMonths = 12;
 
     @FXML
     private TextField yearField;

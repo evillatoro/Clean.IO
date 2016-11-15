@@ -17,13 +17,16 @@ public class Edit_Profile_Controller {
     private Profile profile;
 
     @FXML
-    private TextField firstNameField;
+    private
+    TextField firstNameField;
 
     @FXML
-    private TextField lastNameField;
+    private
+    TextField lastNameField;
 
     @FXML
-    private TextField passwordField;
+    private
+    TextField passwordField;
 
     @FXML
     private TextField streetField;
@@ -35,7 +38,8 @@ public class Edit_Profile_Controller {
     private TextField cityField;
 
     @FXML
-    private TextField accountTypeField;
+    private
+    TextField accountTypeField;
 
     /**
      * setup the main application link so we can call methods there
