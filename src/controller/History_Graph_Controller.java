@@ -24,15 +24,16 @@ public class History_Graph_Controller {
     private MainFXApplication mainFXApplication;
 
     @FXML
-    private CategoryAxis x = new CategoryAxis();
+    private final CategoryAxis x = new CategoryAxis();
 
     @FXML
-    private NumberAxis y = new NumberAxis();
+    private final NumberAxis y = new NumberAxis();
 
     @FXML
     private LineChart<String, Double> chart;
 
-    private ObservableList<String> monthNames = FXCollections.observableArrayList();
+    private final ObservableList<String> monthNames =
+            FXCollections.observableArrayList();
 
     private List<WaterPurityReport> waterPurityReportList;
 
@@ -44,7 +45,7 @@ public class History_Graph_Controller {
 
     private XYChart.Series<String, Double> contaminantSeries;
 
-    private int numOfMonths = 12;
+    private final int numOfMonths = 12;
 
     @FXML
     private TextField yearField;
@@ -63,7 +64,8 @@ public class History_Graph_Controller {
     private void initialize() {
         x.setLabel("Month");
         y.setLabel("PPM");
-        //String[] months = DateFormatSymbols.getInstance(Locale.ENGLISH).getMonths();
+        //String[] months = DateFormatSymbols.
+        // getInstance(Locale.ENGLISH).getMonths();
         String[] months = new String[numOfMonths];
         for(int i = 0; i < months.length; i++) {
             months[i] = (i + 1) + "";
@@ -83,9 +85,11 @@ public class History_Graph_Controller {
 
     /**
      * loads the water purity reports of a water source report
-     * @param waterPurityReportList list of water purity reports of a water source report
+     * @param waterPurityReportList list of water purity reports
+     * of a water source report
      */
-    public void setWaterPurityData(List<WaterPurityReport> waterPurityReportList) {
+    public void setWaterPurityData(List<WaterPurityReport>
+                                           waterPurityReportList) {
         this.waterPurityReportList = waterPurityReportList;
 //        double[] monthCounter = new double[12];
 //        int[] eachMonthTotalReports = new int[12];
@@ -102,8 +106,9 @@ public class History_Graph_Controller {
 //            }
 //        }
 //
-//        XYChart.Series<String, Double> series = createMonthDataSeries(averages);
-//        chart.getData().add(series);
+//        XYChart.Series<String, Double> series =
+//         createMonthDataSeries(averages);
+//          chart.getData().add(series);
     }
 
     /**
@@ -111,11 +116,15 @@ public class History_Graph_Controller {
      * @param monthCounter array that contains data that will be displayed
      * @return series that will be displayed on a graph
      */
-    private XYChart.Series<String, Double> createMonthDataSeries(double[] monthCounter) {
-        XYChart.Series<String,Double> series = new XYChart.Series<String,Double>();
+    private XYChart.Series<String, Double>
+        createMonthDataSeries(double[] monthCounter) {
+        XYChart.Series<String,Double> series =
+                new XYChart.Series<>();
 
         for (int i = 0; i < monthCounter.length; i++) {
-            XYChart.Data<String, Double> monthData = new XYChart.Data<String,Double>(monthNames.get(i), monthCounter[i]);
+            XYChart.Data<String, Double> monthData =
+                    new XYChart.Data<>(monthNames.get(i),
+                            monthCounter[i]);
             series.getData().add(monthData);
         }
 
@@ -142,7 +151,8 @@ public class History_Graph_Controller {
                 double[] averages = new double[numOfMonths];
                 for (int i = 0; i < averages.length; i++) {
                     if (eachMonthTotalReports[i] != 0) {
-                        averages[i] = monthCounter[i] / eachMonthTotalReports[i];
+                        averages[i] = monthCounter[i] /
+                                eachMonthTotalReports[i];
                     }
                 }
 
@@ -176,7 +186,8 @@ public class History_Graph_Controller {
                 double[] averages = new double[numOfMonths];
                 for (int i = 0; i < averages.length; i++) {
                     if (eachMonthTotalReports[i] != 0) {
-                        averages[i] = monthCounter[i] / eachMonthTotalReports[i];
+                        averages[i] = monthCounter[i] /
+                                eachMonthTotalReports[i];
                     }
                 }
 

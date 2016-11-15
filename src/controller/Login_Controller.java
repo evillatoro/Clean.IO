@@ -41,7 +41,8 @@ public class Login_Controller {
         if (isInputValid()) {
             String username = usernameField.getText();
             String password = passwordField.getText();
-            Profile profileToLogin = Model.getInstance().searchForProfile(username, password);
+            Profile profileToLogin = Model.getInstance()
+                    .searchForProfile(username, password);
             if (profileToLogin != null) {
                 usernameField.clear();
                 passwordField.clear();
@@ -88,10 +89,12 @@ public class Login_Controller {
         String errorMessage = "";
 
         //for now just check they actually typed something
-        if ((usernameField.getText() == null) || (usernameField.getText().isEmpty())) {
+        if ((usernameField.getText() == null) ||
+                (usernameField.getText().isEmpty())) {
             errorMessage += "No valid username!\n";
         }
-        if ((passwordField.getText() == null) || (passwordField.getText().isEmpty())) {
+        if ((passwordField.getText() == null) ||
+                (passwordField.getText().isEmpty())) {
             errorMessage += "No valid password entered!\n";
         }
 

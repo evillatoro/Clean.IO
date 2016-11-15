@@ -21,7 +21,8 @@ import java.util.ResourceBundle;
 /**
  * controller for the water availability scene
  */
-public class Water_Availability_Controller implements Initializable, MapComponentInitializedListener {
+public class Water_Availability_Controller implements Initializable,
+        MapComponentInitializedListener {
 
     @FXML
     private GoogleMapView mapView;
@@ -124,7 +125,7 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                 int currentZoom = map.getZoom();
                 map.setZoom(currentZoom - 1);
                 map.setZoom(currentZoom);
-            } else if (submitWaterPurityReportPane.isExpanded()) {
+//            } else if (submitWaterPurityReportPane.isExpanded()) {
 
 //                LatLong hi = new LatLong((JSObject) obj.getMember("latLng"));
 //                lol.setPosition(hi);
@@ -137,11 +138,13 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             }
         });
 
-        List<WaterSourceReport> waterSourceReports = Model.getInstance().getWaterSourceReports();
+        List<WaterSourceReport> waterSourceReports = Model.getInstance()
+                .getWaterSourceReports();
 
         for (WaterSourceReport waterSourceReport : waterSourceReports) {
             MarkerOptions markerOptions = new MarkerOptions();
-            LatLong loc = new LatLong(waterSourceReport.getLatitude(), waterSourceReport.getLongitude());
+            LatLong loc = new LatLong(waterSourceReport.getLatitude(),
+                    waterSourceReport.getLongitude());
             markerOptions.position(loc)
                     .visible(Boolean.TRUE);
 
@@ -151,13 +154,18 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                     UIEventType.click,
                     (JSObject obj) -> {
                         if (submitWaterPurityReportPane.isExpanded()) {
-                            LatLong location = new LatLong((JSObject) obj.getMember("latLng"));
-                            latitudeField1.setText(location.getLatitude() + "");
-                            longitudeField1.setText(location.getLongitude() + "");
+                            LatLong location = new LatLong((JSObject) obj
+                                    .getMember("latLng"));
+                            latitudeField1.
+                                    setText(location.getLatitude() + "");
+                            longitudeField1.
+                                    setText(location.getLongitude() + "");
 
                         }
-                        InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
-                        infoWindowOptions.content(waterSourceReport.getTypeOfWater() + "<br>"
+                        InfoWindowOptions infoWindowOptions =
+                                new InfoWindowOptions();
+                        infoWindowOptions.content(waterSourceReport.
+                                getTypeOfWater() + "<br>"
                                 + waterSourceReport.getConditionOfWater());
 
                         InfoWindow window = new InfoWindow(infoWindowOptions);
@@ -220,13 +228,17 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             String nameOfReporter = profile.getUsername();
             Double latitude = Double.parseDouble(latitudeFieldWSR.getText());
             Double longitude = Double.parseDouble(longitudeFieldWSR.getText());
-            TypeOfWater typeOfWater = typeOfWaterComboBox.getSelectionModel().getSelectedItem();
-            ConditionOfWater conditionOfWater = conditionOfWaterComboBox.getSelectionModel().getSelectedItem();
+            TypeOfWater typeOfWater =
+                    typeOfWaterComboBox.getSelectionModel().getSelectedItem();
+            ConditionOfWater conditionOfWater =
+                    conditionOfWaterComboBox.
+                            getSelectionModel().getSelectedItem();
 //            WaterSourceReport waterSourceReport
-//                    = new WaterSourceReport(date, time, nameOfReporter, latitude,
+//                 = new WaterSourceReport(date, time, nameOfReporter, latitude,
 //                    longitude, typeOfWater, conditionOfWater);
 
-            if (Model.getInstance().addWaterSourceReport(date, time, nameOfReporter, latitude, longitude,
+            if (Model.getInstance().addWaterSourceReport(date,
+                    time, nameOfReporter, latitude, longitude,
                     typeOfWater, conditionOfWater)) {
 
                 Marker marker = new Marker(new MarkerOptions());
@@ -235,17 +247,23 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                         UIEventType.click,
                         (JSObject obj) -> {
                             if (submitWaterPurityReportPane.isExpanded()) {
-                                LatLong location = new LatLong((JSObject) obj.getMember("latLng"));
-                                latitudeField1.setText(location.getLatitude() + "");
-                                longitudeField1.setText(location.getLongitude() + "");
+                                LatLong location =new LatLong((JSObject) obj.
+                                        getMember("latLng"));
+                                latitudeField1.setText(location.
+                                        getLatitude() + "");
+                                longitudeField1.setText(location.
+                                        getLongitude() + "");
 
                             }
 
-                            InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
-                            infoWindowOptions.content(typeOfWater.toString() + "<br>" +
+                            InfoWindowOptions infoWindowOptions =
+                                    new InfoWindowOptions();
+                            infoWindowOptions.content(typeOfWater.
+                                    toString() + "<br>" +
                                     conditionOfWater.toString());
 
-                            InfoWindow window = new InfoWindow(infoWindowOptions);
+                            InfoWindow window =
+                                    new InfoWindow(infoWindowOptions);
                             window.open(map, marker);
                         });
 
@@ -262,7 +280,8 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                 Stage stage = mainApplication.getWindow();
                 alert.initOwner(stage);
                 alert.setTitle("Error");
-                alert.setHeaderText("Someone has already submitted a report for this location.");
+                alert.setHeaderText("Someone has already submitted a" +
+                        "report for this location.");
                 //alert.setContentText("wrong username or password");
 
                 alert.showAndWait();
@@ -277,9 +296,11 @@ public class Water_Availability_Controller implements Initializable, MapComponen
     private void handleSubmitWaterPurityButtonPressed() {
         if (isInputValid()) {
 //            Date yeah = new Date();
-//            SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+//            SimpleDateFormat dateFormatter =
+//              new SimpleDateFormat("MM/dd/yyyy");
 //            SimpleDateFormat timeFormatter = new SimpleDateFormat("h:mm a");
-            String date = datePicker.getValue().getMonthValue() + "/" + datePicker.getValue().getDayOfMonth() + "/"
+            String date = datePicker.getValue().getMonthValue() + "/" +
+                    datePicker.getValue().getDayOfMonth() + "/"
                     + datePicker.getValue().getYear();
             String time = "default";
 //            String date = dateFormatter.format(yeah);
@@ -287,11 +308,14 @@ public class Water_Availability_Controller implements Initializable, MapComponen
             String nameOfReporter = profile.getUsername();
             Double latitude = Double.parseDouble(latitudeField1.getText());
             Double longitude = Double.parseDouble(longitudeField1.getText());
-            OverallCondition overallCondition = overallConditionComboBox.getSelectionModel().getSelectedItem();
+            OverallCondition overallCondition = overallConditionComboBox.
+                    getSelectionModel().getSelectedItem();
             Double virusPPM = Double.parseDouble(virusPPMField.getText());
-            Double contaminantPPM = Double.parseDouble(contaminantPPMField.getText());
+            Double contaminantPPM = Double.parseDouble(contaminantPPMField.
+                    getText());
             WaterPurityReport waterPurityReport
-                    = new WaterPurityReport(date, time, nameOfReporter, latitude, longitude,
+                    = new WaterPurityReport(date, time, nameOfReporter,
+                    latitude, longitude,
                     overallCondition, virusPPM, contaminantPPM);
             waterPurityReport.setMonth(datePicker.getValue().getMonthValue());
             waterPurityReport.setYear(datePicker.getValue().getYear());
@@ -301,7 +325,8 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                 Stage stage = mainApplication.getWindow();
                 alert.initOwner(stage);
                 alert.setTitle("Error");
-                alert.setHeaderText("Someone has already submitted a report for this location.");
+                alert.setHeaderText("Someone has already submitted a" +
+                        "report for this location.");
                 //alert.setContentText("wrong username or password");
 
                 alert.showAndWait();
@@ -329,10 +354,12 @@ public class Water_Availability_Controller implements Initializable, MapComponen
         String errorMessage = "";
             if (submitWaterReportPane.isExpanded()) {
                 //for now just check they actually typed something
-                if ((longitudeFieldWSR.getText() == null) || (longitudeFieldWSR.getText().isEmpty())) {
+                if ((longitudeFieldWSR.getText() == null) ||
+                        (longitudeFieldWSR.getText().isEmpty())) {
                     errorMessage += "No valid longitude!\n";
                 }
-                if ((latitudeFieldWSR.getText() == null) || (latitudeFieldWSR.getText().isEmpty())) {
+                if ((latitudeFieldWSR.getText() == null) ||
+                        (latitudeFieldWSR.getText().isEmpty())) {
                     errorMessage += "No valid latitude!\n";
                 }
             } else if (submitWaterPurityReportPane.isExpanded()) {
@@ -340,18 +367,22 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                 if (datePicker.getValue() == null) {
                     errorMessage += "No valid date!\n";
                 }
-                if ((longitudeField1.getText() == null) || (longitudeField1.getText().isEmpty())) {
+                if ((longitudeField1.getText() == null) ||
+                        (longitudeField1.getText().isEmpty())) {
                     errorMessage += "No valid longitude!\n";
                 }
-                if ((latitudeField1.getText() == null) || (latitudeField1.getText().isEmpty())) {
+                if ((latitudeField1.getText() == null) ||
+                        (latitudeField1.getText().isEmpty())) {
                     errorMessage += "No valid latitude!\n";
                 }
 
                 //for now just check they actually typed something
-                if ((virusPPMField.getText() == null) || (virusPPMField.getText().isEmpty())) {
+                if ((virusPPMField.getText() == null) ||
+                        (virusPPMField.getText().isEmpty())) {
                     errorMessage += "No valid virus PPM!\n";
                 }
-                if ((contaminantPPMField.getText() == null) || (contaminantPPMField.getText().isEmpty())) {
+                if ((contaminantPPMField.getText() == null) ||
+                        (contaminantPPMField.getText().isEmpty())) {
                     errorMessage += "No valid contaminant PPM!\n";
                 }
             }

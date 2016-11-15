@@ -86,7 +86,8 @@ public class Register_Controller {
                 alert.initOwner(mainApplication.getWindow());
                 alert.setTitle("Profile Not Added");
                 alert.setHeaderText("Bad Profile Add");
-                alert.setContentText("Profile was not added, check that they are not already in server!");
+                alert.setContentText("Profile was not added," +
+                        "check that they are not already in server!");
 
                 alert.showAndWait();
                 firstNameField.clear();
@@ -113,18 +114,22 @@ public class Register_Controller {
         String errorMessage = "";
 
         //for now just check they actually typed something
-        if ((usernameField.getText() == null) || (usernameField.getText().isEmpty())) {
+        if ((usernameField.getText() == null) ||
+                (usernameField.getText().isEmpty())) {
             errorMessage += "No valid username!\n";
         }
-        if ((passwordField.getText() == null) || (passwordField.getText().isEmpty())) {
+        if ((passwordField.getText() == null) ||
+                (passwordField.getText().isEmpty())) {
             errorMessage += "No valid password entered!\n";
         }
 
-        if ((firstNameField.getText() == null) || (firstNameField.getText().isEmpty())) {
+        if ((firstNameField.getText() == null) ||
+                (firstNameField.getText().isEmpty())) {
             errorMessage += "No first name entered!\n";
         }
 
-        if ((lastNameField.getText() == null) || (lastNameField.getText().isEmpty())) {
+        if ((lastNameField.getText() == null) ||
+                (lastNameField.getText().isEmpty())) {
             errorMessage += "No last name entered!\n";
         }
 

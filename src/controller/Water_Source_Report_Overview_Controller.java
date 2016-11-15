@@ -64,14 +64,18 @@ public class Water_Source_Report_Overview_Controller {
     private void initialize() {
         // Initialize the source table with the one column
         reportNumberColumn.setCellValueFactory(
-                cellData -> cellData.getValue().getThisReportNumberProperty().asObject());
+                cellData -> cellData.getValue().
+                        getThisReportNumberProperty().asObject());
 
         // Clear water source details.
         showWaterSourceReportDetails(null);
 
-        // Listen for selection changes and show the water source report details when changed.
-        waterSourceTable.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> showWaterSourceReportDetails(newValue));
+        // Listen for selection
+        // changes and show the water source report details when changed.
+        waterSourceTable.getSelectionModel().selectedItemProperty().
+                addListener(
+                (observable, oldValue,
+                 newValue) -> showWaterSourceReportDetails(newValue));
         reportNumberColumn.setStyle("-fx-alignment: CENTER;");
     }
 
@@ -95,16 +99,21 @@ public class Water_Source_Report_Overview_Controller {
      *
      * @param waterSourceReport the waterSourceReport or null
      */
-    private void showWaterSourceReportDetails(WaterSourceReport waterSourceReport) {
+    private void showWaterSourceReportDetails(WaterSourceReport
+                                                      waterSourceReport) {
         if (waterSourceReport != null) {
             // Fill the labels with info from the waterSourceReport object.
             dateLabel.setText(waterSourceReport.getDate());
             timeLabel.setText(waterSourceReport.getTime());
             nameOfWorkerLabel.setText(waterSourceReport.getNameOfReporter());
-            latOfLocationOfWaterLabel.setText(waterSourceReport.getLatitude().toString());
-            longOfLocationOfWaterLabel.setText(waterSourceReport.getLongitude().toString());
-            typeOfWaterLabel.setText(waterSourceReport.getTypeOfWater().toString());
-            conditionOfWaterLabel.setText(waterSourceReport.getConditionOfWater().toString());
+            latOfLocationOfWaterLabel.setText(waterSourceReport.getLatitude().
+                    toString());
+            longOfLocationOfWaterLabel.setText(waterSourceReport.getLongitude().
+                    toString());
+            typeOfWaterLabel.setText(waterSourceReport.getTypeOfWater().
+                    toString());
+            conditionOfWaterLabel.setText(waterSourceReport.
+                    getConditionOfWater().toString());
         } else {
             // water source is null, remove all the text.
             dateLabel.setText("");
@@ -142,7 +151,8 @@ public class Water_Source_Report_Overview_Controller {
     @FXML
     private void handleViewHistoryGraphPressed() {
         if (waterSourceTable.getSelectionModel().getSelectedItem() != null) {
-            mainFXApplication.displayHistoryGraphScene(waterSourceTable.getSelectionModel().getSelectedItem());
+            mainFXApplication.displayHistoryGraphScene(waterSourceTable.
+                    getSelectionModel().getSelectedItem());
         }
     }
 
