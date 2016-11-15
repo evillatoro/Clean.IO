@@ -305,6 +305,13 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                 //alert.setContentText("wrong username or password");
 
                 alert.showAndWait();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success!");
+                alert.setHeaderText("Water report successfully submitted!");
+                //alert.setContentText("I have a great message for you!");
+
+                alert.showAndWait();
             }
 
             map.removeMarker(lol);
