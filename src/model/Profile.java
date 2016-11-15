@@ -24,6 +24,9 @@ public class Profile {
      * @param username profile's username
      * @param password profile's password
      * @param accountType profile's account type
+     * @param firstName the first name of profile
+     * @param lastName the last name of profile
+     *
      */
     public Profile(String username, String password, AccountType accountType,
                    String firstName, String lastName) {
