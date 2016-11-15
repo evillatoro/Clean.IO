@@ -16,7 +16,8 @@ public class WaterPurityReport {
     private Double virusPPM;
     private Double contaminantPPM;
     private OverallCondition overallCondition;
-    private final IntegerProperty thisInstanceReportNumber = new SimpleIntegerProperty();
+    private final IntegerProperty thisInstanceReportNumber =
+            new SimpleIntegerProperty();
 
     private int month;
     private int year;
@@ -37,8 +38,22 @@ public class WaterPurityReport {
         return month;
     }
 
-    public WaterPurityReport(String date, String time, String nameOfReporter, Double latitude, Double longitude,
-                             OverallCondition overallCondition, Double virusPPM, Double contaminantPPM) {
+    /**
+     * makes a water purity report
+     * @param date date being passed in
+     * @param time time being passed in
+     * @param nameOfReporter name of report being passed in
+     * @param latitude latitude passed in
+     * @param longitude longitude passed in
+     * @param overallCondition overall condition passed in
+     * @param virusPPM virusppm being passed in
+     * @param contaminantPPM contaminantPPm being passed in
+     */
+
+    public WaterPurityReport(String date, String time, String nameOfReporter,
+                             Double latitude, Double longitude,
+                             OverallCondition overallCondition,
+                             Double virusPPM, Double contaminantPPM) {
         this.date = date;
         this.time = time;
         this.nameOfReporter = nameOfReporter;

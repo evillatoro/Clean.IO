@@ -2,6 +2,10 @@ package model;
 
 import javafx.beans.property.*;
 
+/**
+ * representation of a profile
+ */
+
 public class Profile {
 
     private static int totalNumberOfAccounts = 1;
@@ -10,8 +14,10 @@ public class Profile {
     private String password;
     private String firstName;
     private String lastName;
-    private final ObjectProperty<AccountType> _accountType = new SimpleObjectProperty<>();
-    private final IntegerProperty thisInstanceAccountNumber = new SimpleIntegerProperty();
+    private final ObjectProperty<AccountType> _accountType =
+            new SimpleObjectProperty<>();
+    private final IntegerProperty thisInstanceAccountNumber =
+            new SimpleIntegerProperty();
 
     /**
      * makes a new profile
@@ -19,7 +25,8 @@ public class Profile {
      * @param password profile's password
      * @param accountType profile's account type
      */
-    public Profile(String username, String password, AccountType accountType, String firstName, String lastName) {
+    public Profile(String username, String password, AccountType accountType,
+                   String firstName, String lastName) {
         this.username = username;
         this.password = password;
         _accountType.set(accountType);
@@ -30,11 +37,21 @@ public class Profile {
         totalNumberOfAccounts++;
     }
 
+    /**
+     * makes a profile
+     * @param username username being passed in
+     * @param password password being passed in
+     * @param accountType accountype being passed in
+     */
     public Profile(String username, String password, AccountType accountType) {
         this.username = username;
         this.password = password;
         _accountType.setValue(accountType);
     }
+
+    /**
+     * constructor for profile
+     */
 
     public Profile() {}
 
