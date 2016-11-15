@@ -75,7 +75,8 @@ public class Database {
 
     private void addProfileToDatabase(Profile profile) {
         try {
-            String query = "INSERT INTO profiles (id, username, password, accountType, firstName, lastName) values (null, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO profiles " +
+                    "(id, username, password, accountType, firstName, lastName) values (null, ?, ?, ?, ?, ?)";
             st = con.prepareStatement(query);
             st.setString(1, profile.getUsername());
             st.setString(2, profile.getPassword());
@@ -103,14 +104,16 @@ public class Database {
 //            }
 //        }
 //        //never found a duplicate water source report so safe to add it
-//        WaterSourceReport waterSourceReport = new WaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater);
+//        WaterSourceReport waterSourceReport =
+//                new WaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater);
 //        waterSourceReports.add(waterSourceReport);
 //        //return the success signal
 //        return true;
 
         // database way to do it
         try {
-            String query = "SELECT 'latitude', 'longitude' FROM watersourcereports WHERE latitude = ? AND longitude = ?";
+            String query = "SELECT 'latitude', " +
+                    "'longitude' FROM watersourcereports WHERE latitude = ? AND longitude = ?";
             st = con.prepareStatement(query);
             st.setDouble(1, latitude);
             st.setDouble(2, longitude);
@@ -131,7 +134,8 @@ public class Database {
 
     private void addWaterSourceReportToDatabase(WaterSourceReport waterSourceReport) {
         try {
-            String query = "INSERT INTO watersourcereports (id, date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater) " +
+            String query = "INSERT INTO watersourcereports " +
+                    "(id, date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater) " +
                     "values (null, ?, ?, ?, ?, ?, ? ,?)";
             st = con.prepareStatement(query);
             st.setString(1, waterSourceReport.getDate());
@@ -155,7 +159,8 @@ public class Database {
      */
     public boolean addWaterPurityReport(WaterPurityReport waterPurityReport) {
 //        for (WaterPurityReport p : waterPurityReports) {
-//            if (p.getLatitude().equals(waterPurityReport.getLatitude()) && p.getLongitude().equals(waterPurityReport.getLongitude())) {
+            if (p.getLatitude().equals(waterPurityReport.getLatitude())
+                    && p.getLongitude().equals(waterPurityReport.getLongitude())) {
 //                // found duplicate water purity report
 //                return false;
 //            }
@@ -242,8 +247,7 @@ public class Database {
                 AccountType accountType = AccountType.valueOf(rs.getString("accountType").toUpperCase());
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
-                Profile profile = new Profile(username, password, accountType, firstName, lastName);
-                return profile;
+                return new Profile(username, password, accountType, firstName, lastName);
             }
 
         } catch (SQLException e) {
@@ -302,9 +306,9 @@ public class Database {
                 Double longitude = rs.getDouble("longitude");
                 TypeOfWater typeOfWater = TypeOfWater.valueOf(rs.getString("typeOfWater"));
                 ConditionOfWater conditionOfWater;
-                if (rs.getString("conditionOfWater").equals("Treatable-Clear")) {
+                if ("Treatable-Clear".equals(rs.getString("conditionOfWater"))) {
                     conditionOfWater = ConditionOfWater.Treatable_Clear;
-                } else if (rs.getString("conditionOfWater").equals("Treatable-Muddy")) {
+                } else if ("Treatable-Muddy".equals(rs.getString("conditionOfWater"))) {
                     conditionOfWater = ConditionOfWater.Treatable_Muddy;
                 } else {
                     conditionOfWater = ConditionOfWater.valueOf(rs.getString("conditionOfWater"));

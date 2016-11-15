@@ -10,7 +10,7 @@ public final class Model {
     }
 
     /** database of project*/
-    private Database database;
+    private final Database database;
 
     /** remember the currently logged in profile*/
     private Profile loggedInProfile;

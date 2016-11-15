@@ -6,7 +6,10 @@ public class Profile {
 
     private static int totalNumberOfAccounts = 1;
 
-    private String username, password, firstName, lastName;
+    private String username;
+    private String password;
+    private String firstName;
+    private String lastName;
     private final ObjectProperty<AccountType> _accountType = new SimpleObjectProperty<>();
     private final IntegerProperty thisInstanceAccountNumber = new SimpleIntegerProperty();
 

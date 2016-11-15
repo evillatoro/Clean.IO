@@ -113,24 +113,24 @@ public class Register_Controller {
         String errorMessage = "";
 
         //for now just check they actually typed something
-        if ((usernameField.getText() == null) || (usernameField.getText().length() == 0)) {
+        if ((usernameField.getText() == null) || (usernameField.getText().isEmpty())) {
             errorMessage += "No valid username!\n";
         }
-        if ((passwordField.getText() == null) || (passwordField.getText().length() == 0)) {
+        if ((passwordField.getText() == null) || (passwordField.getText().isEmpty())) {
             errorMessage += "No valid password entered!\n";
         }
 
-        if ((firstNameField.getText() == null) || (firstNameField.getText().length() == 0)) {
+        if ((firstNameField.getText() == null) || (firstNameField.getText().isEmpty())) {
             errorMessage += "No first name entered!\n";
         }
 
-        if ((lastNameField.getText() == null) || (lastNameField.getText().length() == 0)) {
+        if ((lastNameField.getText() == null) || (lastNameField.getText().isEmpty())) {
             errorMessage += "No last name entered!\n";
         }
 
 
         //no error message means success / good input
-        if (errorMessage.length() == 0) {
+        if (errorMessage.isEmpty()) {
             return true;
         } else {
             // Show the error message if bad data

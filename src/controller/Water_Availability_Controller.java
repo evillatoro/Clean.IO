@@ -329,10 +329,10 @@ public class Water_Availability_Controller implements Initializable, MapComponen
         String errorMessage = "";
             if (submitWaterReportPane.isExpanded()) {
                 //for now just check they actually typed something
-                if ((longitudeFieldWSR.getText() == null) || (longitudeFieldWSR.getText().length() == 0)) {
+                if ((longitudeFieldWSR.getText() == null) || (longitudeFieldWSR.getText().isEmpty())) {
                     errorMessage += "No valid longitude!\n";
                 }
-                if ((latitudeFieldWSR.getText() == null) || (latitudeFieldWSR.getText().length() == 0)) {
+                if ((latitudeFieldWSR.getText() == null) || (latitudeFieldWSR.getText().isEmpty())) {
                     errorMessage += "No valid latitude!\n";
                 }
             } else if (submitWaterPurityReportPane.isExpanded()) {
@@ -340,24 +340,24 @@ public class Water_Availability_Controller implements Initializable, MapComponen
                 if (datePicker.getValue() == null) {
                     errorMessage += "No valid date!\n";
                 }
-                if ((longitudeField1.getText() == null) || (longitudeField1.getText().length() == 0)) {
+                if ((longitudeField1.getText() == null) || (longitudeField1.getText().isEmpty())) {
                     errorMessage += "No valid longitude!\n";
                 }
-                if ((latitudeField1.getText() == null) || (latitudeField1.getText().length() == 0)) {
+                if ((latitudeField1.getText() == null) || (latitudeField1.getText().isEmpty())) {
                     errorMessage += "No valid latitude!\n";
                 }
 
                 //for now just check they actually typed something
-                if ((virusPPMField.getText() == null) || (virusPPMField.getText().length() == 0)) {
+                if ((virusPPMField.getText() == null) || (virusPPMField.getText().isEmpty())) {
                     errorMessage += "No valid virus PPM!\n";
                 }
-                if ((contaminantPPMField.getText() == null) || (contaminantPPMField.getText().length() == 0)) {
+                if ((contaminantPPMField.getText() == null) || (contaminantPPMField.getText().isEmpty())) {
                     errorMessage += "No valid contaminant PPM!\n";
                 }
             }
 
         //no error message means success / good input
-        if (errorMessage.length() == 0) {
+        if (errorMessage.isEmpty()) {
             return true;
         } else {
             // Show the error message if bad data

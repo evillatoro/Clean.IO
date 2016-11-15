@@ -8,7 +8,10 @@ public class WaterPurityReport {
     private String date;
     private String time;
     private String nameOfReporter;
-    private Double latitude, longitude, virusPPM, contaminantPPM;
+    private Double latitude;
+    private Double longitude;
+    private Double virusPPM;
+    private Double contaminantPPM;
     private OverallCondition overallCondition;
     private final IntegerProperty thisInstanceReportNumber = new SimpleIntegerProperty();
 

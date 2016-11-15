@@ -108,7 +108,7 @@ public class History_Graph_Controller {
 
     /**
      * makes the lines of the graph
-     * @param monthCounter arrary that contains data that will be displayed
+     * @param monthCounter array that contains data that will be displayed
      * @return series that will be displayed on a graph
      */
     private XYChart.Series<String, Double> createMonthDataSeries(double[] monthCounter) {
@@ -200,12 +200,12 @@ public class History_Graph_Controller {
         String errorMessage = "";
 
         //for now just check they actually typed something
-        if ((yearField.getText() == null) || (yearField.getText().length() == 0)) {
+        if ((yearField.getText() == null) || (yearField.getText().isEmpty())) {
             errorMessage += "No valid year!";
         }
 
         //no error message means success / good input
-        if (errorMessage.length() == 0) {
+        if (errorMessage.isEmpty()) {
             return true;
         } else {
             // Show the error message if bad data

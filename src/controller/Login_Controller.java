@@ -88,16 +88,16 @@ public class Login_Controller {
         String errorMessage = "";
 
         //for now just check they actually typed something
-        if ((usernameField.getText() == null) || (usernameField.getText().length() == 0)) {
+        if ((usernameField.getText() == null) || (usernameField.getText().isEmpty())) {
             errorMessage += "No valid username!\n";
         }
-        if ((passwordField.getText() == null) || (passwordField.getText().length() == 0)) {
+        if ((passwordField.getText() == null) || (passwordField.getText().isEmpty())) {
             errorMessage += "No valid password entered!\n";
         }
 
 
         //no error message means success / good input
-        if (errorMessage.length() == 0) {
+        if (errorMessage.isEmpty()) {
             return true;
         } else {
             // Show the error message if bad data
