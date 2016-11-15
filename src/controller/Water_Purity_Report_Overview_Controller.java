@@ -49,8 +49,10 @@ public class Water_Purity_Report_Overview_Controller {
     }
 
     /**
-     * sets the water source report that has all the water purity reports to be displayed
-     * @param waterSourceReport water source report that has its water purity reports displayed
+     * sets the water source report that has all the water purity
+     * reports to be displayed
+     * @param waterSourceReport water source report that
+     *                          has its water purity reports displayed
      */
     public void setData(WaterSourceReport waterSourceReport) {
         waterPurityTable.setItems(waterSourceReport.getWaterPurityReports());
@@ -64,14 +66,17 @@ public class Water_Purity_Report_Overview_Controller {
     private void initialize() {
         // Initialize the purity table with the one column
         reportNumberColumn.setCellValueFactory(
-                cellData -> cellData.getValue().getThisReportNumberProperty().asObject());
+                cellData -> cellData.getValue().getThisReportNumberProperty()
+                        .asObject());
 
         // Clear water purity details.
         showWaterPurityReportDetails(null);
 
-        // Listen for selection changes and show the water purity report details when changed.
+        // Listen for selection changes and show the water purity report details
+        // when changed.
         waterPurityTable.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> showWaterPurityReportDetails(newValue));
+                (observable, oldValue, newValue) -> showWaterPurityReportDetails
+                        (newValue));
         reportNumberColumn.setStyle("-fx-alignment: CENTER;");
     }
 
@@ -81,17 +86,22 @@ public class Water_Purity_Report_Overview_Controller {
      *
      * @param waterPurityReport the waterPurityReport or null
      */
-    private void showWaterPurityReportDetails(WaterPurityReport waterPurityReport) {
+    private void showWaterPurityReportDetails(WaterPurityReport
+                                                      waterPurityReport) {
         if (waterPurityReport != null) {
             // Fill the labels with info from the waterSourceReport object.
             dateLabel.setText(waterPurityReport.getDate());
             timeLabel.setText(waterPurityReport.getTime());
             nameOfWorkerLabel.setText(waterPurityReport.getNameOfReporter());
-            latOfLocationLabel.setText(waterPurityReport.getLatitude().toString());
-            longOfLocationLabel.setText(waterPurityReport.getLongitude().toString());
-            overallConditionLabel.setText(waterPurityReport.getOverallCondition().toString());
+            latOfLocationLabel.setText(waterPurityReport.getLatitude()
+                    .toString());
+            longOfLocationLabel.setText(waterPurityReport.getLongitude()
+                    .toString());
+            overallConditionLabel.setText(waterPurityReport.
+                    getOverallCondition().toString());
             virusPPMLabel.setText(waterPurityReport.getVirusPPM().toString());
-            contaminantPPMLabel.setText(waterPurityReport.getContaminantPPM().toString());
+            contaminantPPMLabel.setText(waterPurityReport.
+                    getContaminantPPM().toString());
         } else {
             // water source is null, remove all the text.
             dateLabel.setText("");
