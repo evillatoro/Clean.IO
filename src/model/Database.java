@@ -3,8 +3,14 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+
+@SuppressWarnings("ALL")
 public class Database {
 
     /** the list of all registered profiles for this database */
@@ -29,9 +35,9 @@ public class Database {
             String url = "jdbc:mysql://108.201.215.73:3306/cleanwater?autoReconnect=true&useSSL=false";
             Class.forName ("com.mysql.jdbc.Driver").newInstance ();
             con = DriverManager.getConnection (url, "ed", "ed");
-            System.out.println("connection set");
+            //System.out.println("connection set");
         } catch(Exception e) {
-            System.out.println("Error " + e);
+            //System.out.println("Error " + e);
         }
     }
 
@@ -94,8 +100,10 @@ public class Database {
      * @param waterSourceReport the water source report to add to the database
      * @return true if success, false if water source report already in the database
      */
-    public boolean addWaterSourceReport(String date, String time, String nameOfReporter, Double latitude,
-                                        Double longitude, TypeOfWater typeOfWater, ConditionOfWater conditionOfWater) {
+    public boolean addWaterSourceReport(WaterSourceReport waterSourceReport) {
+        Double latitude = waterSourceReport.getLatitude();
+        Double longitude = waterSourceReport.getLongitude();
+
 //        for (WaterSourceReport p : waterSourceReports) {
 //            if (p.getLatitude().equals(latitude)
 //                    && p.getLongitude().equals(longitude)) {
@@ -119,7 +127,6 @@ public class Database {
             st.setDouble(2, longitude);
             rs = st.executeQuery();
             if(!(rs.next())) {
-                WaterSourceReport waterSourceReport = new WaterSourceReport(date, time, nameOfReporter, latitude, longitude, typeOfWater, conditionOfWater);
                 addWaterSourceReportToDatabase(waterSourceReport);
                 waterSourceReports.add(waterSourceReport);
                 return true;
@@ -159,8 +166,8 @@ public class Database {
      */
     public boolean addWaterPurityReport(WaterPurityReport waterPurityReport) {
 //        for (WaterPurityReport p : waterPurityReports) {
-            if (p.getLatitude().equals(waterPurityReport.getLatitude())
-                    && p.getLongitude().equals(waterPurityReport.getLongitude())) {
+//            if (p.getLatitude().equals(waterPurityReport.getLatitude())
+//                    && p.getLongitude().equals(waterPurityReport.getLongitude())) {
 //                // found duplicate water purity report
 //                return false;
 //            }
@@ -199,7 +206,8 @@ public class Database {
 
     private void addWaterPurityReportToDatabase(WaterPurityReport waterPurityReport) {
         try {
-            String query = "INSERT INTO waterpurityreports (id, date, time, nameOfReporter, latitude, longitude, overallCondition, virusPPM, contaminantPPM, year, month) values " +
+            String query = "INSERT INTO waterpurityreports (id, date, time, nameOfReporter," +
+                    " latitude, longitude, overallCondition, virusPPM, contaminantPPM, year, month) values " +
                     "(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             st = con.prepareStatement(query);
             st.setString(1, waterPurityReport.getDate());
@@ -242,8 +250,6 @@ public class Database {
             st.setString(2, password);
             rs = st.executeQuery();
             if (rs.next()) {
-                username = rs.getString("username");
-                password = rs.getString("password");
                 AccountType accountType = AccountType.valueOf(rs.getString("accountType").toUpperCase());
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
@@ -352,7 +358,7 @@ public class Database {
                 for (WaterSourceReport p : waterSourceReports) {
                     if (p.getLatitude().equals(waterPurityReport.getLatitude()) && p.getLongitude().equals(waterPurityReport.getLongitude())) {
                         p.getWaterPurityReports().add(waterPurityReport);
-                        System.out.println("added " + p);
+                        //System.out.println("added " + p);
                     }
                 }
 

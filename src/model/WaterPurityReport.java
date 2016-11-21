@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 /**
  * water purity report
  */
+@SuppressWarnings("ALL")
 public class WaterPurityReport {
     private static int reportNumber = 1;
     private String date;
@@ -46,7 +47,7 @@ public class WaterPurityReport {
      * @param latitude latitude passed in
      * @param longitude longitude passed in
      * @param overallCondition overall condition passed in
-     * @param virusPPM virusppm being passed in
+     * @param virusPPM virusPPM being passed in
      * @param contaminantPPM contaminantPPm being passed in
      */
 
@@ -63,7 +64,7 @@ public class WaterPurityReport {
         this.virusPPM = virusPPM;
         this.contaminantPPM = contaminantPPM;
         this.thisInstanceReportNumber.setValue(reportNumber);
-        reportNumber++;
+        //reportNumber++;
 
     }
 

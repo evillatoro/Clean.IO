@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+@SuppressWarnings("ALL")
 public class WaterSourceReport {
     private static int reportNumber = 1;
     private String date;
@@ -40,7 +41,7 @@ public class WaterSourceReport {
         this.conditionOfWater = conditionOfWater;
         this.thisInstanceReportNumber.setValue(reportNumber);
 
-        reportNumber++;
+        //reportNumber++;
     }
 
     public String getDate() {

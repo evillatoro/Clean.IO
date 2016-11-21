@@ -3,13 +3,31 @@ package controller;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
 import com.lynden.gmapsfx.javascript.event.UIEventType;
-import com.lynden.gmapsfx.javascript.object.*;
+import com.lynden.gmapsfx.javascript.object.GoogleMap;
+import com.lynden.gmapsfx.javascript.object.InfoWindow;
+import com.lynden.gmapsfx.javascript.object.InfoWindowOptions;
+import com.lynden.gmapsfx.javascript.object.LatLong;
+import com.lynden.gmapsfx.javascript.object.MapOptions;
+import com.lynden.gmapsfx.javascript.object.MapTypeIdEnum;
+import com.lynden.gmapsfx.javascript.object.Marker;
+import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.stage.Stage;
-import model.*;
+import model.AccountType;
+import model.ConditionOfWater;
+import model.Model;
+import model.OverallCondition;
+import model.Profile;
+import model.TypeOfWater;
+import model.WaterPurityReport;
+import model.WaterSourceReport;
 import netscape.javascript.JSObject;
 
 import java.net.URL;
@@ -58,6 +76,10 @@ public class Water_Availability_Controller implements Initializable,
     @FXML
     private TextField contaminantPPMField;
 
+    private final Double LATCENTER = 33.7756;
+
+    private final Double LONGCENTER = -84.3963;
+
     /** a link back to the main application class */
     private MainFXApplication mainApplication;
 
@@ -98,9 +120,9 @@ public class Water_Availability_Controller implements Initializable,
         MapOptions options = new MapOptions();
 
         //set up the center location for the map
-        Double centerLat = 33.7756;
-        Double centerLong = -84.3963;
-        LatLong center = new LatLong(centerLat, centerLong);
+//        Double centerLat = 33.7756;
+//        Double centerLong = -84.3963;
+        LatLong center = new LatLong(LATCENTER, LONGCENTER);
 
         options.center(center)
                 .zoom(9)
@@ -233,13 +255,11 @@ public class Water_Availability_Controller implements Initializable,
             ConditionOfWater conditionOfWater =
                     conditionOfWaterComboBox.
                             getSelectionModel().getSelectedItem();
-//            WaterSourceReport waterSourceReport
-//                 = new WaterSourceReport(date, time, nameOfReporter, latitude,
-//                    longitude, typeOfWater, conditionOfWater);
+            WaterSourceReport waterSourceReport
+                 = new WaterSourceReport(date, time, nameOfReporter, latitude,
+                    longitude, typeOfWater, conditionOfWater);
 
-            if (Model.getInstance().addWaterSourceReport(date,
-                    time, nameOfReporter, latitude, longitude,
-                    typeOfWater, conditionOfWater)) {
+            if (Model.getInstance().addWaterSourceReport(waterSourceReport)) {
 
                 Marker marker = new Marker(new MarkerOptions());
                 marker.setPosition(new LatLong(latitude, longitude));

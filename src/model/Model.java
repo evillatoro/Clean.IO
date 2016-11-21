@@ -2,6 +2,8 @@ package model;
 
 import javafx.collections.ObservableList;
 
+/** model of application*/
+@SuppressWarnings("ALL")
 public final class Model {
 
     private static final Model instance = new Model();
@@ -57,10 +59,21 @@ public final class Model {
         return false;
     }
 
+    /**
+     * removes a profile
+     * @param username username to remove
+     * @return true if profile is removed
+     */
     public boolean removeProfile(String username) {
         return (database != null) && database.removeProfile(username);
     }
 
+    /**
+     * searches for a profile
+     * @param username username of profile
+     * @param password password of profile
+     * @return if found returns the profile, otherwise null
+     */
     public Profile searchForProfile(String username, String password) {
         if (database != null) {
             loggedInProfile = database.searchForProfile(username, password);
@@ -75,10 +88,8 @@ public final class Model {
      * @param waterSourceReport the water source report to add to the database
      * @return true if water source report added, false if not added
      */
-    public boolean addWaterSourceReport(String date, String time, String nameOfReporter, Double latitude,
-                                        Double longitude, TypeOfWater typeOfWater, ConditionOfWater conditionOfWater) {
-        return (database != null) && database.addWaterSourceReport(date, time, nameOfReporter,
-                latitude, longitude, typeOfWater, conditionOfWater);
+    public boolean addWaterSourceReport(WaterSourceReport waterSourceReport) {
+        return (database != null) && database.addWaterSourceReport(waterSourceReport);
     }
 
     /**

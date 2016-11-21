@@ -1,14 +1,19 @@
 package model;
 
-import javafx.beans.property.*;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 /**
  * representation of a profile
  */
 
+@SuppressWarnings("ALL")
 public class Profile {
 
-    private static int totalNumberOfAccounts = 1;
+    //private static int totalNumberOfAccounts = 1;
 
     private String username;
     private String password;
@@ -35,16 +40,16 @@ public class Profile {
         _accountType.set(accountType);
         this.firstName = firstName;
         this.lastName = lastName;
-        this.thisInstanceAccountNumber.setValue(totalNumberOfAccounts);
+        //this.thisInstanceAccountNumber.setValue(totalNumberOfAccounts);
         //System.out.println(toString());
-        totalNumberOfAccounts++;
+        //totalNumberOfAccounts++;
     }
 
     /**
      * makes a profile
      * @param username username being passed in
      * @param password password being passed in
-     * @param accountType accountype being passed in
+     * @param accountType accountType being passed in
      */
     public Profile(String username, String password, AccountType accountType) {
         this.username = username;

@@ -23,6 +23,7 @@ import model.WaterSourceReport;
 import java.io.IOException;
 
 /** starts application*/
+@SuppressWarnings("ALL")
 public class MainFXApplication extends Application {
 
     private Stage window;
@@ -145,16 +146,16 @@ public class MainFXApplication extends Application {
     }
 
     private void loadEditProfileScene() throws IOException {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainFXApplication.class.getResource("../view/Edit_Profile_Screen.fxml"));
-            AnchorPane editProfileScreenLayout = loader.load();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainFXApplication.class.getResource("../view/Edit_Profile_Screen.fxml"));
+        AnchorPane editProfileScreenLayout = loader.load();
 
-            // Give the controller access to the main app.
-            Edit_Profile_Controller controller = loader.getController();
-            editProfileController = controller;
-            controller.setMainApp(this);
+        // Give the controller access to the main app.
+        Edit_Profile_Controller controller = loader.getController();
+        editProfileController = controller;
+        controller.setMainApp(this);
 
-            editProfileScene = new Scene(editProfileScreenLayout);
+        editProfileScene = new Scene(editProfileScreenLayout);
     }
 
     private void loadWaterSourceReportOverView() throws IOException {

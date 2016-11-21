@@ -45,7 +45,7 @@ public class History_Graph_Controller {
 
     private XYChart.Series<String, Double> contaminantSeries;
 
-    private int numOfMonths = 12;
+    private final int NUMOFMONTHS = 12;
 
     @FXML
     private TextField yearField;
@@ -66,7 +66,7 @@ public class History_Graph_Controller {
         y.setLabel("PPM");
         //String[] months = DateFormatSymbols.
         // getInstance(Locale.ENGLISH).getMonths();
-        String[] months = new String[numOfMonths];
+        String[] months = new String[NUMOFMONTHS];
         for(int i = 0; i < months.length; i++) {
             months[i] = (i + 1) + "";
         }
@@ -138,8 +138,8 @@ public class History_Graph_Controller {
     private void virusPPM() {
         if (isInputValid()) {
             if ((virusPPMClick % 2) != 0) {
-                double[] monthCounter = new double[numOfMonths];
-                int[] eachMonthTotalReports = new int[numOfMonths];
+                double[] monthCounter = new double[NUMOFMONTHS];
+                int[] eachMonthTotalReports = new int[NUMOFMONTHS];
                 for (WaterPurityReport p : waterPurityReportList) {
                     if (yearField.getText().equals(p.getYear() + "")) {
                         int month = p.getMonth() - 1;
@@ -148,7 +148,7 @@ public class History_Graph_Controller {
                     }
                 }
 
-                double[] averages = new double[numOfMonths];
+                double[] averages = new double[NUMOFMONTHS];
                 for (int i = 0; i < averages.length; i++) {
                     if (eachMonthTotalReports[i] != 0) {
                         averages[i] = monthCounter[i] /
@@ -173,8 +173,8 @@ public class History_Graph_Controller {
     private void contaminantPPM() {
         if (isInputValid()) {
             if ((contaminantPPMClick % 2) != 0) {
-                double[] monthCounter = new double[numOfMonths];
-                int[] eachMonthTotalReports = new int[numOfMonths];
+                double[] monthCounter = new double[NUMOFMONTHS];
+                int[] eachMonthTotalReports = new int[NUMOFMONTHS];
                 for (WaterPurityReport p : waterPurityReportList) {
                     if (yearField.getText().equals(p.getYear() + "")) {
                         int month = p.getMonth() - 1;
@@ -183,7 +183,7 @@ public class History_Graph_Controller {
                     }
                 }
 
-                double[] averages = new double[numOfMonths];
+                double[] averages = new double[NUMOFMONTHS];
                 for (int i = 0; i < averages.length; i++) {
                     if (eachMonthTotalReports[i] != 0) {
                         averages[i] = monthCounter[i] /
