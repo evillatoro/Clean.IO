@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 /**
  * water purity report
  */
-@SuppressWarnings("ALL")
 public class WaterPurityReport {
     private static int reportNumber = 1;
     private String date;

@@ -9,8 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
-@SuppressWarnings("ALL")
 public class Database {
 
     /** the list of all registered profiles for this database */
@@ -32,9 +30,9 @@ public class Database {
     public Database() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://108.201.215.73:3306/cleanwater?autoReconnect=true&useSSL=false";
+            String url = "jdbc:mysql://localhost/test?autoReconnect=true&useSSL=false";
             Class.forName ("com.mysql.jdbc.Driver").newInstance ();
-            con = DriverManager.getConnection (url, "ed", "ed");
+            con = DriverManager.getConnection (url, "root", "edwin10285");
             //System.out.println("connection set");
         } catch(Exception e) {
             //System.out.println("Error " + e);

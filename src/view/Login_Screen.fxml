@@ -1,64 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Login_Controller">
-    <HBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <Pane prefHeight="400.0" prefWidth="330.0" style="-fx-background-color: #4FC3F7;">
-            <VBox layoutX="5.0" layoutY="70.0">
-                <Label alignment="CENTER" prefHeight="52.0" prefWidth="320.0" style="&#10;" text="Welcome!"
-                       textAlignment="CENTER" textFill="WHITE" wrapText="true">
+   <BorderPane prefHeight="400.0" prefWidth="600.0">
+      <left>
+            <VBox alignment="CENTER" style="-fx-background-color: #4FC3F7;" BorderPane.alignment="TOP_CENTER">
+                <Label alignment="CENTER" prefHeight="52.0" prefWidth="300.0" style="&#10;" text="Welcome!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                     <font>
-                        <Font size="26.0"/>
+                        <Font size="26.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" prefHeight="52.0" prefWidth="320.0" style="&#10;" text="This is"
-                       textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                <Label alignment="CENTER" prefHeight="52.0" prefWidth="300.0" style="&#10;" text="This is" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                     <font>
-                        <Font size="26.0"/>
+                        <Font size="26.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" prefHeight="52.0" prefWidth="320.0" style="&#10;" text="Clean.IO"
-                       textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                <Label alignment="CENTER" prefHeight="52.0" prefWidth="300.0" style="&#10;" text="Clean.IO" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                     <font>
-                        <Font name="System Bold" size="26.0"/>
+                        <Font name="System Bold" size="26.0" />
                     </font>
                 </Label>
             </VBox>
-        </Pane>
-        <Pane prefHeight="400.0" prefWidth="330.0" style="-fx-background-color: #29B6F6;" translateZ="3.0">
-            <VBox alignment="TOP_CENTER" layoutX="81.0" layoutY="75.0" spacing="15.0">
-                <TextField fx:id="usernameField" promptText="Username"/>
-                <PasswordField fx:id="passwordField" promptText="Password"/>
-                <Button mnemonicParsing="false" onAction="#handleLoginCleanIOPressed" prefHeight="34.0"
-                        prefWidth="190.0" style="-fx-background-color: #FFFFFF;" text="Login with a Clean.IO account">
-                    <font>
-                        <Font size="12.0"/>
-                    </font>
-                </Button>
-                <Label/>
-                <Label alignment="CENTER" text="Haven't Registered Yet?" textAlignment="CENTER" textFill="WHITE"/>
-                <Button mnemonicParsing="false" onAction="#handleRegisterPressed" prefHeight="34.0" prefWidth="190.0"
-                        style="-fx-background-color: white;" text="Register a Clean.IO account!">
-                    <font>
-                        <Font size="12.0"/>
-                    </font>
-                </Button>
-            </VBox>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutY="71.0" stroke="BLACK"
-                       strokeType="INSIDE"/>
-            <Button layoutX="225.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleCancelPressed"
-                    text="Cancel"/>
-        </Pane>
-    </HBox>
+      </left>
+      <center>
+         <VBox style="-fx-background-color: #29B6F6;" BorderPane.alignment="CENTER">
+            <children>
+               <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                 <buttons>
+                        <Button mnemonicParsing="false" onAction="#handleCancelPressed" text="Cancel" />
+                 </buttons>
+                  <VBox.margin>
+                     <Insets right="10.0" top="5.0" />
+                  </VBox.margin>
+               </ButtonBar>
+                  <VBox alignment="CENTER" spacing="15.0">
+                      <TextField fx:id="usernameField" promptText="Username">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                  </TextField>
+                      <PasswordField fx:id="passwordField" promptText="Password">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                  </PasswordField>
+                      <Button mnemonicParsing="false" onAction="#handleLoginCleanIOPressed" prefHeight="34.0" prefWidth="190.0" style="-fx-background-color: #FFFFFF;" text="Login with a Clean.IO account">
+                          <font>
+                              <Font size="12.0" />
+                          </font>
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                      </Button>
+                      <Label alignment="CENTER" text="Haven't Registered Yet?" textAlignment="CENTER" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                  </Label>
+                      <Button mnemonicParsing="false" onAction="#handleRegisterPressed" prefHeight="34.0" prefWidth="190.0" style="-fx-background-color: white;" text="Register a Clean.IO account!">
+                          <font>
+                              <Font size="12.0" />
+                          </font>
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                      </Button>
+                  <VBox.margin>
+                     <Insets top="70.0" />
+                  </VBox.margin>
+                  </VBox>
+            </children>
+         </VBox>
+      </center>
+   </BorderPane>
 </AnchorPane>

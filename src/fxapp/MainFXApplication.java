@@ -99,7 +99,7 @@ public class MainFXApplication extends Application {
     private void loadWelcomeScene() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainFXApplication.class.getResource("../view/Welcome_Screen.fxml"));
-        BorderPane welcomeScreenLayout = loader.load();
+        AnchorPane welcomeScreenLayout = loader.load();
 
         // Give the controller access to the main app.
         Welcome_Scene_Controller controller = loader.getController();

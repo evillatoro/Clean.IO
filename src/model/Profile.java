@@ -10,7 +10,6 @@ import javafx.beans.property.SimpleObjectProperty;
  * representation of a profile
  */
 
-@SuppressWarnings("ALL")
 public class Profile {
 
     //private static int totalNumberOfAccounts = 1;

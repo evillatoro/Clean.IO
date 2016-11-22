@@ -3,7 +3,6 @@ package model;
 import javafx.collections.ObservableList;
 
 /** model of application*/
-@SuppressWarnings("ALL")
 public final class Model {
 
     private static final Model instance = new Model();
