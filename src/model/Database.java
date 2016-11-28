@@ -30,12 +30,12 @@ public class Database {
     public Database() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost/test?autoReconnect=true&useSSL=false";
+            String url = "jdbc:mysql://sql9.freesqldatabase.com/sql9146857?autoReconnect=true&useSSL=false";
             Class.forName ("com.mysql.jdbc.Driver").newInstance ();
-            con = DriverManager.getConnection (url, "root", "edwin10285");
-            //System.out.println("connection set");
+            con = DriverManager.getConnection (url, "sql9146857", "mJtwiV4kMk");
+            System.out.println("connection set");
         } catch(Exception e) {
-            //System.out.println("Error " + e);
+            System.out.println("Error " + e);
         }
     }
 
@@ -365,10 +365,6 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public void loadWaterPurity() {
-
     }
 
 }
