@@ -171,7 +171,7 @@ public class Water_Availability_Controller implements Initializable,
                     .visible(Boolean.TRUE);
 
             Marker marker = new Marker(markerOptions);
-
+            InfoWindow window = new InfoWindow();
             map.addUIEventHandler(marker,
                     UIEventType.click,
                     (JSObject obj) -> {
@@ -189,8 +189,7 @@ public class Water_Availability_Controller implements Initializable,
                         infoWindowOptions.content(waterSourceReport.
                                 getTypeOfWater() + "<br>"
                                 + waterSourceReport.getConditionOfWater());
-
-                        InfoWindow window = new InfoWindow(infoWindowOptions);
+                        window.setOptions(infoWindowOptions);
                         window.open(map, marker);
                     });
 

@@ -22,10 +22,10 @@ public final class Model {
         database.loadWaterSourceReports();
         database.loadWaterPurityReports();
         // default profiles to use to test
-        addProfile(new Profile("u", "p", AccountType.USER, "user", "e"));
-        addProfile(new Profile("w", "p", AccountType.WORKER, "worker", "e"));
-        addProfile(new Profile("m", "p", AccountType.MANAGER, "manager", "e"));
-        addProfile(new Profile("a", "p", AccountType.ADMIN, "admin", "e"));
+//        addProfile(new Profile("u", "p", AccountType.USER, "user", "e"));
+//        addProfile(new Profile("w", "p", AccountType.WORKER, "worker", "e"));
+//        addProfile(new Profile("m", "p", AccountType.MANAGER, "manager", "e"));
+//        addProfile(new Profile("a", "p", AccountType.ADMIN, "admin", "e"));
     }
 
     /**
