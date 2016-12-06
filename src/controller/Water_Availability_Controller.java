@@ -262,6 +262,7 @@ public class Water_Availability_Controller implements Initializable,
 
                 Marker marker = new Marker(new MarkerOptions());
                 marker.setPosition(new LatLong(latitude, longitude));
+                InfoWindow window = new InfoWindow();
                 map.addUIEventHandler(marker,
                         UIEventType.click,
                         (JSObject obj) -> {
@@ -277,12 +278,10 @@ public class Water_Availability_Controller implements Initializable,
 
                             InfoWindowOptions infoWindowOptions =
                                     new InfoWindowOptions();
-                            infoWindowOptions.content(typeOfWater.
-                                    toString() + "<br>" +
-                                    conditionOfWater.toString());
-
-                            InfoWindow window =
-                                    new InfoWindow(infoWindowOptions);
+                            infoWindowOptions.content(waterSourceReport.
+                                    getTypeOfWater() + "<br>"
+                                    + waterSourceReport.getConditionOfWater());
+                            window.setOptions(infoWindowOptions);
                             window.open(map, marker);
                         });
 
